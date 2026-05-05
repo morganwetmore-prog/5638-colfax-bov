@@ -6,7 +6,7 @@
   <title>5638 N Colfax Ave — LAAA Team BOV</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#e8edf2;background:#0a1828}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#1a1a1a;background:#f4f5f7;-webkit-font-smoothing:antialiased}
 
     /* TOPBAR */
     .topbar{background:#0a2540;padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:10}
@@ -15,84 +15,85 @@
     .topbar nav a:hover{color:#b8985a}
 
     /* HERO */
-    .hero{position:relative;height:500px;overflow:hidden;background:#0a1828}
-    .hero-img{width:100%;height:100%;object-fit:cover;opacity:0.4;display:block;background:url('images/hero.jpg') center/cover no-repeat}
-    .hero-bg{position:absolute;inset:0;background:url('images/hero.jpg') center/cover no-repeat;opacity:0.4}
-    .hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:48px 60px;background:linear-gradient(to top,rgba(10,21,40,0.92) 0%,rgba(10,21,40,0.3) 60%,transparent 100%)}
+    .hero{position:relative;height:440px;overflow:hidden;background:#0a2540}
+    .hero-bg{position:absolute;inset:0;background:url('images/hero.jpg') center/cover no-repeat;opacity:0.38}
+    .hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:44px 60px;background:linear-gradient(to top,rgba(10,21,40,0.92) 0%,rgba(10,21,40,0.25) 65%,transparent 100%)}
     .hero-tag{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#b8985a;margin-bottom:10px;font-weight:700}
-    .hero h1{font-size:40px;font-weight:700;color:#fff;line-height:1.1;margin-bottom:6px}
-    .hero-sub{font-size:15px;color:#a8b3c2;margin-bottom:20px}
-    .hero-price{display:inline-block;background:#b8985a;color:#0a2540;font-size:26px;font-weight:700;padding:8px 22px;letter-spacing:0.5px}
+    .hero h1{font-size:38px;font-weight:700;color:#fff;line-height:1.1;margin-bottom:6px}
+    .hero-sub{font-size:15px;color:#cbd5e1;margin-bottom:18px}
+    .hero-price{display:inline-block;background:#b8985a;color:#0a2540;font-size:24px;font-weight:700;padding:7px 20px;letter-spacing:0.3px}
 
     /* METRICS BAR */
-    .metrics-bar{background:#0d1f35;border-bottom:1px solid rgba(255,255,255,0.08);display:flex}
-    .metric{flex:1;padding:18px 0;border-right:1px solid rgba(255,255,255,0.08);text-align:center}
+    .metrics-bar{background:#fff;border-bottom:2px solid #e6e9ef;display:flex;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+    .metric{flex:1;padding:16px 0;border-right:1px solid #e6e9ef;text-align:center}
     .metric:last-child{border-right:none}
-    .metric .m-val{font-size:20px;font-weight:700;color:#e8edf2}
-    .metric .m-lbl{font-size:10px;text-transform:uppercase;letter-spacing:0.7px;color:#5a7288;margin-top:4px}
-    .metric.bov{background:#b8985a}
-    .metric.bov .m-val{color:#0a2540}
-    .metric.bov .m-lbl{color:#0a2540;opacity:0.7}
+    .metric .m-val{font-size:19px;font-weight:700;color:#0a2540}
+    .metric .m-lbl{font-size:10px;text-transform:uppercase;letter-spacing:0.7px;color:#888;margin-top:3px}
+    .metric.bov{background:#0a2540}
+    .metric.bov .m-val{color:#b8985a}
+    .metric.bov .m-lbl{color:#a8b3c2}
 
     /* MAIN */
-    .main{max-width:1040px;margin:0 auto;padding:52px 48px}
-    .section-intro{font-size:13px;color:#5a7288;line-height:1.8;margin-bottom:36px;max-width:600px}
-    .section-intro strong{color:#e8edf2}
+    .main{max-width:1000px;margin:0 auto;padding:48px 32px}
+    .section-intro{font-size:13px;color:#666;line-height:1.8;margin-bottom:32px}
+    .section-intro strong{color:#0a2540}
 
     /* CARD GRID */
-    .cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:48px}
-    .card-link{display:block;text-decoration:none;color:inherit;background:#0f2438;border:1px solid rgba(255,255,255,0.1);border-radius:4px;transition:box-shadow .2s,border-color .2s}
-    .card-link:hover{box-shadow:0 4px 20px rgba(0,0,0,0.4);border-color:rgba(184,152,90,0.4)}
+    .cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:44px}
+    .card-link{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #e6e9ef;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.05);transition:box-shadow .2s,border-color .2s}
+    .card-link:hover{box-shadow:0 4px 16px rgba(0,0,0,0.1);border-color:#b8985a}
     .card-link:hover .card-arrow{color:#b8985a}
-    .card-inner{padding:26px 26px 20px}
-    .card-icon{font-size:26px;margin-bottom:12px;display:block}
-    .card-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#5a7288;margin-bottom:6px}
-    .card-title{font-size:17px;font-weight:700;color:#e8edf2;margin-bottom:10px;line-height:1.2}
-    .card-desc{font-size:13px;color:#7d96aa;line-height:1.7;margin-bottom:16px}
-    .card-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:12px}
-    .card-tags span{display:inline-block;background:#0a1828;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#7d96aa;padding:3px 8px;margin-right:4px;border-radius:2px}
-    .card-arrow{font-size:16px;color:#5a7288;font-weight:700;transition:color .2s}
+    .card-inner{padding:24px 24px 18px}
+    .card-icon{font-size:24px;margin-bottom:12px;display:block}
+    .card-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#888;margin-bottom:6px}
+    .card-title{font-size:17px;font-weight:700;color:#0a2540;margin-bottom:8px;line-height:1.2}
+    .card-desc{font-size:13px;color:#555;line-height:1.7;margin-bottom:14px}
+    .card-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #e6e9ef;padding-top:12px}
+    .card-tags span{display:inline-block;background:#f4f5f7;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#666;padding:3px 8px;margin-right:4px;border-radius:3px}
+    .card-arrow{font-size:16px;color:#aaa;font-weight:700;transition:color .2s}
 
     /* FEATURED BOV CARD */
-    .card-link.featured{grid-column:1/-1;background:#122038;border-color:#b8985a;border-width:1px}
-    .card-link.featured .card-inner{display:flex;gap:36px;align-items:center}
+    .card-link.featured{grid-column:1/-1;background:#fff;border-color:#0a2540;border-width:2px}
+    .card-link.featured .card-inner{display:flex;gap:32px;align-items:center}
     .card-link.featured .card-left{flex:1.2}
     .card-link.featured .card-right{flex:1}
-    .card-link.featured .card-title{font-size:22px;color:#fff}
-    .featured-stats{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,0.1)}
-    .featured-stat{padding:14px 16px;border-right:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1)}
+    .card-link.featured .card-title{font-size:21px}
+    .featured-stats{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #e6e9ef;border-radius:6px;overflow:hidden}
+    .featured-stat{padding:14px 16px;border-right:1px solid #e6e9ef;border-bottom:1px solid #e6e9ef;background:#f8fafc}
     .featured-stat:nth-child(even){border-right:none}
     .featured-stat:nth-last-child(-n+2){border-bottom:none}
-    .featured-stat .fs-val{font-size:18px;font-weight:700;color:#b8985a}
-    .featured-stat .fs-lbl{font-size:10px;color:#5a7288;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
+    .featured-stat .fs-val{font-size:17px;font-weight:700;color:#b8985a}
+    .featured-stat .fs-lbl{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
 
     /* QUICK FACTS */
-    .facts-section{margin-bottom:48px}
+    .facts-section{margin-bottom:44px}
     .facts-section h2{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#b8985a;border-bottom:2px solid #b8985a;padding-bottom:6px;display:inline-block;margin-bottom:16px}
-    .facts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(255,255,255,0.1)}
-    .fact-cell{padding:13px 15px;border-right:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08)}
+    .facts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #e6e9ef;border-radius:6px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+    .fact-cell{padding:13px 15px;border-right:1px solid #e6e9ef;border-bottom:1px solid #e6e9ef;background:#fff}
     .fact-cell:nth-child(4n){border-right:none}
     .fact-cell:nth-last-child(-n+4){border-bottom:none}
-    .fact-cell .f-lbl{font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:#5a7288;margin-bottom:4px}
-    .fact-cell .f-val{font-size:13px;font-weight:600;color:#e8edf2}
+    .fact-cell .f-lbl{font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:#888;margin-bottom:4px}
+    .fact-cell .f-val{font-size:13px;font-weight:600;color:#0a2540}
 
     /* CONTACT BAR */
-    .contact-bar{background:#0a2540;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;border-top:1px solid rgba(184,152,90,0.3)}
+    .contact-bar{background:#0a2540;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;border-top:3px solid #b8985a}
     .contact-bar .agent{color:#a8b3c2;font-size:12px;line-height:2}
     .contact-bar .agent strong{color:#fff;font-size:13px}
-    .contact-bar .dv{width:1px;background:rgba(255,255,255,0.1);align-self:stretch}
-    .footer-bottom{background:#060e18;color:#5a7288;font-size:10px;padding:10px 48px;text-align:center;letter-spacing:0.5px;border-top:3px solid #b8985a}
+    .contact-bar .dv{width:1px;background:rgba(255,255,255,0.15);align-self:stretch}
+    .footer-bottom{background:#060e18;color:#5a7288;font-size:10px;padding:10px 48px;text-align:center;letter-spacing:0.5px}
 
     @media(max-width:760px){
-      .topbar{padding:0 20px}
+      .topbar{padding:0 16px}
       .topbar nav a{margin-left:12px;font-size:11px}
-      .hero-content{padding:32px 24px}
-      .hero h1{font-size:26px}
-      .main{padding:36px 20px}
+      .hero-content{padding:28px 20px}
+      .hero h1{font-size:24px}
+      .main{padding:32px 16px}
       .cards-grid{grid-template-columns:1fr}
       .card-link.featured .card-inner{flex-direction:column}
+      .metrics-bar{flex-wrap:wrap}
+      .metric{flex:1 1 33%;border-bottom:1px solid #e6e9ef}
       .facts-grid{grid-template-columns:repeat(2,1fr)}
-      .contact-bar{padding:20px 24px;flex-direction:column}
+      .contact-bar{padding:20px 20px;flex-direction:column}
       .dv{display:none}
     }
   </style>
@@ -178,7 +179,7 @@
           <div class="card-icon">📊</div>
           <div class="card-num">02 &nbsp;/&nbsp; Pricing Range</div>
           <div class="card-title">Range of Value</div>
-          <div class="card-desc">Cap rate sensitivity table from $1,350,000 to $1,650,000 in $50,000 steps. Shows how price/unit, price/SF, GRM, and cap rate move at each price point. $1,500,000 highlighted.</div>
+          <div class="card-desc">Cap rate sensitivity table from $1,375,000 to $1,625,000 in ~$50,000 steps. Shows how price/unit, price/SF, GRM, and cap rate move at each price point. $1,500,000 highlighted.</div>
           <div class="card-footer">
             <div class="card-tags"><span>Cap Rate</span><span>GRM</span><span>$/Unit</span></div>
             <div class="card-arrow">→</div>
@@ -191,9 +192,9 @@
           <div class="card-icon">💵</div>
           <div class="card-num">03 &nbsp;/&nbsp; Sale Economics</div>
           <div class="card-title">Estimated Net Proceeds</div>
-          <div class="card-desc">Full closing cost breakdown — county &amp; city transfer taxes, commissions, title, and escrow. No Measure ULA (below $5.3M threshold). No loan payoff — property is free and clear.</div>
+          <div class="card-desc">Full closing cost breakdown — county &amp; city transfer taxes, commissions, title, and escrow. No loan payoff — property is free and clear.</div>
           <div class="card-footer">
-            <div class="card-tags"><span>No ULA</span><span>Free &amp; Clear</span><span>~$1,395,350</span></div>
+            <div class="card-tags"><span>Free &amp; Clear</span><span>~$1,395,350</span></div>
             <div class="card-arrow">→</div>
           </div>
         </div>
