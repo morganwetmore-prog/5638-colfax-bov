@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5638 Colfax Ave — Broker Opinion of Value</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;background:#f4f5f7;line-height:1.55;-webkit-font-smoothing:antialiased}
+    .topbar{background:#0a2540;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:10}
+    .topbar .brand{font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:1px}
+    .topbar nav a{color:#a8b3c2;text-decoration:none;font-size:11px;margin-left:18px;letter-spacing:0.3px;transition:color .15s}
+    .topbar nav a:hover,.topbar nav a.active{color:#b8985a}
+    .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+    header{background:linear-gradient(135deg,#0a2540 0%,#143b6b 100%);color:#fff;padding:44px 0 52px;border-bottom:4px solid #b8985a}
+    .eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#b8985a;font-weight:600;margin-bottom:12px}
+    h1{font-size:32px;font-weight:700;line-height:1.15;letter-spacing:-0.5px;margin-bottom:8px}
+    .sub{font-size:16px;color:#cbd5e1;font-weight:400;margin-bottom:16px}
+    .prepared-for{margin-top:18px;font-size:13px;color:#a8b3c2;border-top:1px solid rgba(255,255,255,0.1);padding-top:14px}
+    .prepared-for strong{color:#fff}
+    .hero-banner{width:100%;height:420px;background:#0a2540 url('images/hero.jpg') center/cover no-repeat;border-bottom:4px solid #b8985a}
+    main{padding:44px 0 60px}
+    section{background:#fff;border-radius:8px;padding:32px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+    h2{font-size:22px;font-weight:700;color:#0a2540;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid #e6e9ef}
+    h3{font-size:15px;font-weight:600;color:#0a2540;margin:24px 0 12px;text-transform:uppercase;letter-spacing:0.5px}
+    p{margin-bottom:14px}
+    ul{margin-left:20px;margin-bottom:14px}
+    li{margin-bottom:10px}
+    .section-tag{display:inline-block;background:#f4ead0;color:#7a5f1a;padding:4px 12px;border-radius:12px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+    .specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:16px 0 24px}
+    .spec{background:#f8fafc;padding:14px 16px;border-radius:5px;border-left:3px solid #b8985a}
+    .spec.hl{border-left-color:#0a2540;background:#f0f4f8}
+    .spec-label{font-size:11px;color:#666;text-transform:uppercase;letter-spacing:0.8px;font-weight:600;margin-bottom:4px}
+    .spec-value{font-size:15px;color:#0a2540;font-weight:600;line-height:1.3}
+    .interior-photo{width:100%;height:300px;background:#f4f5f7 url('images/interior.jpg') center/cover no-repeat;border-radius:6px;margin:0 0 24px}
+    .takeaways{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:8px}
+    .tk{background:#f8fafc;border-left:3px solid #b8985a;padding:16px 18px;border-radius:0 4px 4px 0}
+    .tk-num{font-size:11px;font-weight:700;color:#b8985a;letter-spacing:1.5px;margin-bottom:4px}
+    .tk-text{font-size:14px;line-height:1.5}
+    .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:16px 0 8px}
+    .stat-box{background:#0a2540;color:#fff;padding:16px;border-radius:6px;text-align:center}
+    .stat-num{font-size:22px;font-weight:700;color:#b8985a;margin-bottom:2px}
+    .stat-lbl{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#a8b3c2}
+    table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:14px}
+    th{background:#0a2540;color:#fff;text-align:left;padding:10px 12px;font-weight:600;font-size:12px;letter-spacing:0.5px;text-transform:uppercase}
+    th.num,td.num{text-align:right}
+    td{padding:11px 12px;border-bottom:1px solid #e6e9ef;vertical-align:top}
+    tr:last-child td{border-bottom:none}
+    tr:nth-child(even) td{background:#fafbfc}
+    tr.total td{background:#0a2540!important;color:#fff!important;font-weight:600;border-bottom:none}
+    .footer-note{font-size:12px;color:#666;margin-top:8px;font-style:italic}
+    .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+    .buyer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:12px}
+    .buyer-card{background:#f8fafc;border:1px solid #e6e9ef;border-radius:6px;padding:18px;border-top:3px solid #0a2540}
+    .buyer-label{font-size:11px;font-weight:700;color:#b8985a;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+    .buyer-title{font-size:15px;font-weight:700;color:#0a2540;margin-bottom:8px}
+    .buyer-body{font-size:13px;color:#444;line-height:1.6}
+    .obj-item{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #e6e9ef}
+    .obj-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+    .obj-q{font-weight:700;color:#0a2540;margin-bottom:6px;font-size:14px}
+    .obj-a{font-size:13.5px;color:#444;line-height:1.6}
+    .os-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+    .os-col h3{margin-top:0}
+    .os-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid #e6e9ef;font-size:14px}
+    .os-row:last-child{border-bottom:none}
+    .os-row.total{font-weight:700;color:#0a2540;border-top:2px solid #0a2540;border-bottom:none;margin-top:4px;padding-top:12px}
+    .os-row.subtotal{font-weight:600;background:#f8fafc;padding:9px 8px;margin:2px -8px;border-radius:3px;border-bottom:none}
+    .os-val{font-weight:600;color:#0a2540}
+    .os-val.neg{color:#8b2020}
+    .recommend{background:linear-gradient(135deg,#fef9f0 0%,#fdf2dd 100%);border:1px solid #e6c98a;padding:24px;border-radius:6px;margin-top:8px}
+    .recommend h3{margin-top:0;color:#7a5f1a}
+    .price-band{font-size:32px;font-weight:700;color:#0a2540;margin:10px 0 4px;letter-spacing:-0.5px}
+    .price-band-sub{font-size:13px;color:#666;margin-bottom:16px}
+    .price-ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
+    .price-rung{background:#fff;border:1px solid #e6c98a;border-radius:5px;padding:12px;text-align:center}
+    .price-rung-tag{font-size:10px;color:#7a5f1a;text-transform:uppercase;letter-spacing:0.6px;font-weight:700;margin-bottom:4px}
+    .price-rung-val{font-size:16px;font-weight:700;color:#0a2540}
+    .price-rung-sub{font-size:11px;color:#666;margin-top:2px}
+    .badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+    .b-green{background:#e8f4ea;color:#1f6b35}
+    .team-leaders{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:18px}
+    .team-roster{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+    .team-card{background:#f8fafc;border:1px solid #e6e9ef;border-radius:6px;padding:22px;border-top:3px solid #b8985a;display:flex;flex-direction:column}
+    .headshot-lg{width:96px;height:96px;border-radius:50%;border:3px solid #b8985a;object-fit:cover;display:block;margin:0 auto 12px}
+    .tc-name{font-size:17px;font-weight:700;color:#0a2540;text-align:center;margin-bottom:2px}
+    .tc-title{font-size:11px;color:#b8985a;text-transform:uppercase;letter-spacing:1px;text-align:center;margin-bottom:14px;font-weight:600}
+    .tc-bio{font-size:13px;color:#444;line-height:1.6;margin-bottom:14px}
+    .tc-contact{font-size:12px;color:#0a2540;text-align:center;padding-top:12px;border-top:1px solid #e6e9ef;line-height:1.7;margin-top:auto}
+    .tc-contact a{color:#0a4a8a;text-decoration:none}
+    .roster-card{background:#f8fafc;border:1px solid #e6e9ef;border-radius:6px;padding:16px 10px;text-align:center}
+    .headshot-sm{width:68px;height:68px;border-radius:50%;border:2px solid #b8985a;object-fit:cover;display:block;margin:0 auto 10px}
+    .roster-name{font-size:12px;font-weight:600;color:#0a2540;margin-bottom:2px}
+    .roster-title{font-size:11px;color:#888}
+    footer{background:#0a2540;color:#a8b3c2;padding:28px 0;text-align:center;font-size:13px;border-top:4px solid #b8985a}
+    footer .wrap p{margin-bottom:6px}
+    footer strong{color:#fff}
+    @media(max-width:760px){.team-leaders{grid-template-columns:1fr}.team-roster{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.os-grid{grid-template-columns:1fr}.topbar nav a{margin-left:10px;font-size:10px}}
+    @media(max-width:640px){.hero-banner{height:220px}.interior-photo{height:180px}header{padding:28px 0 36px}h1{font-size:22px}.sub{font-size:14px}section{padding:18px;margin-bottom:14px}h2{font-size:17px}table{font-size:13px}th,td{padding:8px 6px}.price-band{font-size:24px}}
+    @media print{body{background:#fff}section{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}header{background:#0a2540!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">LAAA &nbsp;·&nbsp; Marcus &amp; Millichap</div>
+  <nav>
+    <a href="index.html">Overview</a>
+    <a href="bov.html" class="active">BOV</a>
+    <a href="sensitivity.html">Range of Value</a>
+    <a href="net-proceeds.html">Net Proceeds</a>
+    <a href="exchange.html">Exchange Analysis</a>
+  </nav>
+</div>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Broker Opinion of Value &nbsp;·&nbsp; LA Apartment Advisors &nbsp;·&nbsp; Marcus &amp; Millichap</p>
+    <h1>5638 N Colfax Avenue</h1>
+    <p class="sub">North Hollywood, CA 91601 &nbsp;·&nbsp; 8-Unit All-Studio Apartment Building</p>
+    <div class="prepared-for"><strong>Exclusively Prepared For:</strong> &nbsp;The Baker Family</div>
+  </div>
+</header>
+
+<div class="hero-banner"></div>
+
+<main>
+<div class="wrap">
+
+  <section>
+    <span class="section-tag">Subject Property</span>
+    <h2>Property Overview</h2>
+    <div class="specs-grid">
+      <div class="spec"><div class="spec-label">Address</div><div class="spec-value">5638 N Colfax Ave<br>North Hollywood, CA 91601</div></div>
+      <div class="spec"><div class="spec-label">Total Units</div><div class="spec-value">8 All-Studio</div></div>
+      <div class="spec"><div class="spec-label">Unit Size</div><div class="spec-value">550 SF Each</div></div>
+      <div class="spec hl"><div class="spec-label">Year Built</div><div class="spec-value">1985 &nbsp;<span class="badge b-green">Non-RSO</span></div></div>
+      <div class="spec"><div class="spec-label">Building Size</div><div class="spec-value">4,524 SF</div></div>
+      <div class="spec"><div class="spec-label">Lot Size</div><div class="spec-value">6,970 SF</div></div>
+      <div class="spec"><div class="spec-label">Parking</div><div class="spec-value">8 Spaces (3 Covered)</div></div>
+      <div class="spec"><div class="spec-label">APN</div><div class="spec-value">2339-015-059</div></div>
+    </div>
+
+    <div class="interior-photo"></div>
+
+    <h3>Investment Highlights</h3>
+    <ul>
+      <li><strong>Not Subject to LARSO Rent Control.</strong> The 1985 vintage exempts this building from the Los Angeles Rent Stabilization Ordinance. Rents reset fully to market on any vacancy — buyers pay a premium for this, and it prices into the sale.</li>
+      <li><strong>35.7% Rent Gap, In-Place to Market.</strong> In-place rents average $1,293/month against a $1,695 market rate for comparable Valley Village studios — a $42,780/year upside captured through standard lease turnover.</li>
+      <li><strong>All-Studio Configuration — Simple to Own and Operate.</strong> Eight identical 550 SF studios simplify leasing, CapEx planning, and day-to-day management. Studio product serves the entertainment-industry workforce at the sub-$1,800 affordability band, supporting consistent demand.</li>
+      <li><strong>Offered Free and Clear of Debt.</strong> The property is delivered unencumbered — no existing loan to navigate, no lender approval required. Buyers can finance on their own terms or purchase all-cash on a clean, fast close.</li>
+      <li><strong>2020 Cool Roof — Recent Capital.</strong> Full re-roof completed July 2020 (35 squares of composition shingle, Title 24 cool-roof compliant, Permit 20016-90000-18175). One significant deferred-maintenance item already addressed.</li>
+      <li><strong>8 On-Site Parking Spaces.</strong> 8 spaces (3 covered) per the 1986 Certificate of Occupancy — a ratio that fully satisfies tenant demand in this product type.</li>
+      <li><strong>Federal Opportunity Zone Designation.</strong> The site carries a Federal Opportunity Zone designation, enabling qualifying buyers to defer existing capital gains and eliminate tax on new appreciation over a 10-year hold — made permanent under the 2025 One Big Beautiful Bill Act.</li>
+    </ul>
+  </section>
+
+  <section>
+    <span class="section-tag">Executive Summary</span>
+    <h2>Why This Building Gets Bought</h2>
+    <div class="takeaways">
+      <div class="tk">
+        <div class="tk-num">01</div>
+        <div class="tk-text"><strong>Non-RSO is the most-sought attribute in SFV multifamily.</strong> The 1985 vintage means rents are not controlled. Every vacancy is a full reset to market. Buyers pay a measurable premium for this designation — and the closed comps bear it out.</div>
+      </div>
+      <div class="tk">
+        <div class="tk-num">02</div>
+        <div class="tk-text"><strong>$42,780/year in identifiable rent upside.</strong> The gap between in-place rents ($1,293/mo avg) and market ($1,695/mo) is structural. Three comparable studios within a quarter mile are renting at $1,696–$1,725/month right now.</div>
+      </div>
+      <div class="tk">
+        <div class="tk-num">03</div>
+        <div class="tk-text"><strong>Free and clear — clean close on the buyer's timeline.</strong> No existing lender, no payoff, no approval process. Value-add buyers and 1031 exchange buyers both prize this: they set their own financing, timing, and entry basis.</div>
+      </div>
+      <div class="tk">
+        <div class="tk-num">04</div>
+        <div class="tk-text"><strong>$105,383 pro forma NOI at full market rents.</strong> At $1,500,000, stabilized yield is 7.03%. That spread versus the 4.65% in-place cap rate is the return embedded in the rent upside — and it's what value-add capital underwrites to.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="section-tag">Location Overview</span>
+    <h2>Valley Village — North Hollywood</h2>
+    <div class="two-col">
+      <div>
+        <p>5638 Colfax sits in Valley Village, a quiet residential pocket between Studio City and the NoHo Arts District, one block north of Burbank Boulevard. It is one of the most supply-constrained rental pockets in the San Fernando Valley — low multifamily inventory, strong walkability for a Valley address, and a tenant pool drawn almost entirely from the entertainment and media industries.</p>
+        <p>By car, tenants are 5–10 minutes from every major studio lot: <strong>Universal Studios / NBCUniversal</strong>, <strong>Warner Bros.</strong>, <strong>CBS Radford</strong>, <strong>Disney Burbank</strong>, and <strong>Hollywood Burbank Airport</strong>. This cluster employs tens of thousands of below-the-line workers who rent studios in exactly this price range.</p>
+        <p>The NoHo Arts District — LA's designated performing arts corridor — is walkable to the east. Lankershim's restaurant, bar, and nightlife strip and NoHo Commons (Target, Regal Cinemas) are all accessible without a car.</p>
+      </div>
+      <div>
+        <h3 style="margin-top:0">Location Drivers</h3>
+        <ul>
+          <li><strong>Metro B Line</strong> — North Hollywood terminus under 2 miles; direct rail to Hollywood, Downtown, Koreatown</li>
+          <li><strong>Highway 170</strong> — Immediate freeway access north into the Valley, south to the 101</li>
+          <li><strong>Lankershim / Magnolia Corridors</strong> — Restaurants, bars, and retail within a 10-minute walk</li>
+          <li><strong>NoHo Arts District</strong> — City-designated arts corridor; cultural anchor for the submarket</li>
+          <li><strong>Studio Employment Cluster</strong> — Universal, Warner Bros., CBS Radford, Disney, and Burbank Airport all within 5–10 minutes</li>
+          <li><strong>Supply Constraint</strong> — RD3-1 zoning with small lots limits new multifamily development; organic rent growth structurally supported</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="section-tag">Buyer Profile</span>
+    <h2>Who Buys This Building &amp; Why</h2>
+    <div class="buyer-grid">
+      <div class="buyer-card">
+        <div class="buyer-label">Buyer Type 01</div>
+        <div class="buyer-title">Value-Add Operator</div>
+        <div class="buyer-body">A San Fernando Valley-focused investor with existing multifamily management infrastructure. Enters at a 4.65% in-place cap and underwrites to a 7.03% stabilized yield through natural lease turnover. An optional light interior upgrade ($12K–$18K/unit) supports rents of $1,800–$1,950/month for Class A positioning.</div>
+      </div>
+      <div class="buyer-card">
+        <div class="buyer-label">Buyer Type 02</div>
+        <div class="buyer-title">1031 Exchange Buyer</div>
+        <div class="buyer-body">An investor rolling proceeds from a recently closed SFR, commercial property, or larger multifamily asset. Non-RSO status means no rent board exposure and no relocation liability on standard turnover. The debt-free delivery means they set their own financing on their own timeline — critical for exchange buyers on a 45-day clock.</div>
+      </div>
+      <div class="buyer-card">
+        <div class="buyer-label">Buyer Type 03</div>
+        <div class="buyer-title">Long-Term Wealth Builder</div>
+        <div class="buyer-body">A family office, trust, or high-net-worth individual building a generational hold in a supply-constrained LA submarket. AB 1482 permits 5% + CPI annual rent increases (up to 10%) with full market resets on vacancy. Federal OZ designation layers in capital gains deferral and potential tax-free appreciation on a qualifying 10-year hold.</div>
+      </div>
+    </div>
+    <h3>Anticipated Buyer Questions</h3>
+    <div class="obj-item">
+      <div class="obj-q">How does AB 1482 Just Cause affect the rent upside story?</div>
+      <div class="obj-a">AB 1482 requires just cause for eviction — it does not cap rents. Landlords may raise rents 5% + CPI annually (maximum 10%), and upon any voluntary vacancy, units reset fully to market with no city approval required. This is the core advantage of the non-RSO, post-1978 designation. The rent upside closes organically through normal lease turnover.</div>
+    </div>
+    <div class="obj-item">
+      <div class="obj-q">Why are in-place rents below market for a post-1985 building?</div>
+      <div class="obj-a">Long-term ownership with stable tenants typically produces below-market rents in non-RSO buildings — this is how rent gaps develop. The rent gap here is structural, not a reflection of asset quality. The market supports $1,695–$1,725/month for studios in this corridor, and three live comps confirm it. The upside closes organically through normal lease turnover.</div>
+    </div>
+    <div class="obj-item">
+      <div class="obj-q">The in-place cap rate is 4.65% — is that too thin for a value-add entry?</div>
+      <div class="obj-a">The in-place cap reflects current rents, not the asset's earning potential. The stabilized pro forma NOI at $1,695/month market rents is $105,383 — a 7.03% cap rate on the $1,500,000 asking price. Non-RSO assets with identifiable rent upside don't trade at stabilized yields — buyers pay a current-yield discount to own the optionality. That spread is the value-add return.</div>
+    </div>
+  </section>
+
+  <section>
+    <span class="section-tag">Rent Comparables</span>
+    <h2>Studio Rent Comparables — Valley Village / North Hollywood</h2>
+    <p>Three active studio leases within a quarter mile establish the market-rate range for comparable product in this corridor.</p>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Address</th><th class="num">Size (SF)</th><th class="num">Rent / Mo</th><th class="num">Rent / SF</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>11458 Burbank Blvd, North Hollywood</td><td class="num">500</td><td class="num">$1,696</td><td class="num">$3.39</td></tr>
+          <tr><td>2</td><td>5751 Camellia Ave, North Hollywood</td><td class="num">481</td><td class="num">$1,725</td><td class="num">$3.59</td></tr>
+          <tr><td>3</td><td>5020 Tujunga Ave, North Hollywood</td><td class="num">500</td><td class="num">$1,699</td><td class="num">$3.40</td></tr>
+          <tr class="total">
+            <td colspan="2"><strong>Comp Average</strong></td>
+            <td class="num"><strong>494 SF</strong></td>
+            <td class="num"><strong>$1,707</strong></td>
+            <td class="num"><strong>$3.46</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="footer-note">Rent comps sourced from active listings within 0.5-mile radius, Q1–Q2 2026.</p>
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">$402</div><div class="stat-lbl">Monthly Gap / Unit</div></div>
+      <div class="stat-box"><div class="stat-num">35.7%</div><div class="stat-lbl">Below Market</div></div>
+      <div class="stat-box"><div class="stat-num">$42,780</div><div class="stat-lbl">Annual Upside (8 Units)</div></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="section-tag">Unit Mix &amp; Rent Roll</span>
+    <h2>Current Rent Roll vs. Market</h2>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Unit</th><th>Type</th><th class="num">SF</th><th class="num">In-Place / Mo</th><th class="num">Market / Mo</th><th class="num">Monthly Gap</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Unit 1</td><td>Studio</td><td class="num">550</td><td class="num">$1,249</td><td class="num">$1,695</td><td class="num">$446</td></tr>
+          <tr><td>Unit 2</td><td>Studio</td><td class="num">550</td><td class="num">$1,249</td><td class="num">$1,695</td><td class="num">$446</td></tr>
+          <tr><td>Unit 3</td><td>Studio</td><td class="num">550</td><td class="num">$1,249</td><td class="num">$1,695</td><td class="num">$446</td></tr>
+          <tr><td>Unit 4</td><td>Studio</td><td class="num">550</td><td class="num">$1,249</td><td class="num">$1,695</td><td class="num">$446</td></tr>
+          <tr><td>Unit 5</td><td>Studio</td><td class="num">550</td><td class="num">$1,249</td><td class="num">$1,695</td><td class="num">$446</td></tr>
+          <tr><td>Unit 6</td><td>Studio</td><td class="num">550</td><td class="num">$1,249</td><td class="num">$1,695</td><td class="num">$446</td></tr>
+          <tr><td>Unit 7</td><td>Studio</td><td class="num">550</td><td class="num">Vacant</td><td class="num">$1,695</td><td class="num">$1,695</td></tr>
+          <tr><td>Unit 8</td><td>Studio</td><td class="num">550</td><td class="num">Vacant</td><td class="num">$1,695</td><td class="num">$1,695</td></tr>
+          <tr class="total">
+            <td colspan="2"><strong>Total / Average</strong></td>
+            <td class="num"><strong>4,400 SF</strong></td>
+            <td class="num"><strong>$10,340 / mo</strong></td>
+            <td class="num"><strong>$13,560 / mo</strong></td>
+            <td class="num"><strong>$3,220 / mo</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="footer-note">2 units currently vacant. In-place GSR: $124,080/yr. Pro Forma GSR at full occupancy and market rents: $162,720/yr.</p>
+  </section>
+
+  <section>
+    <span class="section-tag">Financial Analysis</span>
+    <h2>Operating Statement — In-Place vs. Pro Forma</h2>
+    <div class="os-grid">
+      <div class="os-col">
+        <h3>In-Place (Current)</h3>
+        <div class="os-row"><span>Gross Scheduled Rent</span><span class="os-val">$124,080</span></div>
+        <div class="os-row"><span>Vacancy &amp; Credit Loss (3%)</span><span class="os-val neg">($3,722)</span></div>
+        <div class="os-row"><span>Other Income (Laundry)</span><span class="os-val">$960</span></div>
+        <div class="os-row subtotal"><span>Effective Gross Income</span><span class="os-val">$121,318</span></div>
+        <div class="os-row"><span>Real Estate Taxes</span><span class="os-val neg">($18,750)</span></div>
+        <div class="os-row"><span>Insurance</span><span class="os-val neg">($6,000)</span></div>
+        <div class="os-row"><span>Utilities (Electric / Gas)</span><span class="os-val neg">($4,755)</span></div>
+        <div class="os-row"><span>Trash Removal</span><span class="os-val neg">($5,018)</span></div>
+        <div class="os-row"><span>Repairs &amp; Maintenance</span><span class="os-val neg">($6,000)</span></div>
+        <div class="os-row"><span>Landscaping</span><span class="os-val neg">($1,020)</span></div>
+        <div class="os-row"><span>Pest Control</span><span class="os-val neg">($1,140)</span></div>
+        <div class="os-row"><span>Management (5%)</span><span class="os-val neg">($6,066)</span></div>
+        <div class="os-row"><span>G&amp;A / Reserves</span><span class="os-val neg">($2,792)</span></div>
+        <div class="os-row total"><span>Net Operating Income</span><span class="os-val">$69,777</span></div>
+      </div>
+      <div class="os-col">
+        <h3>Pro Forma (Market Rents)</h3>
+        <div class="os-row"><span>Gross Scheduled Rent</span><span class="os-val">$162,720</span></div>
+        <div class="os-row"><span>Vacancy &amp; Credit Loss (3%)</span><span class="os-val neg">($4,882)</span></div>
+        <div class="os-row"><span>Other Income (Laundry)</span><span class="os-val">$960</span></div>
+        <div class="os-row subtotal"><span>Effective Gross Income</span><span class="os-val">$158,798</span></div>
+        <div class="os-row"><span>Real Estate Taxes</span><span class="os-val neg">($18,750)</span></div>
+        <div class="os-row"><span>Insurance</span><span class="os-val neg">($6,000)</span></div>
+        <div class="os-row"><span>Utilities (Electric / Gas)</span><span class="os-val neg">($4,755)</span></div>
+        <div class="os-row"><span>Trash Removal</span><span class="os-val neg">($5,018)</span></div>
+        <div class="os-row"><span>Repairs &amp; Maintenance</span><span class="os-val neg">($6,000)</span></div>
+        <div class="os-row"><span>Landscaping</span><span class="os-val neg">($1,020)</span></div>
+        <div class="os-row"><span>Pest Control</span><span class="os-val neg">($1,140)</span></div>
+        <div class="os-row"><span>Management (5%)</span><span class="os-val neg">($7,940)</span></div>
+        <div class="os-row"><span>G&amp;A / Reserves</span><span class="os-val neg">($2,792)</span></div>
+        <div class="os-row total"><span>Net Operating Income</span><span class="os-val">$105,383</span></div>
+      </div>
+    </div>
+    <p class="footer-note" style="margin-top:16px">Real estate taxes at buyer-basis reassessment at $1,500,000 (1.25% effective rate). Management at 5% of EGI. Pro forma rents of $1,695/month per studio per active rent comp analysis. All figures per Marcus &amp; Millichap underwriting model.</p>
+  </section>
+
+  <section>
+    <span class="section-tag">Sale Comparables</span>
+    <h2>Closed Sale Comparables — North Hollywood</h2>
+    <p>Both comparables are same-vintage (mid-1980s), same submarket, and transacted within the past 12 months. They establish the trading range for stabilized small-studio multifamily in this corridor.</p>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Address</th><th class="num">Units</th><th class="num">Built</th><th>Closed</th><th class="num">Price</th><th class="num">$/Unit</th><th class="num">Cap Rate</th><th class="num">GRM</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td><td>11218 Oxnard St, North Hollywood</td><td class="num">6</td><td class="num">1985</td><td>Sep 2025</td><td class="num">$2,000,000</td><td class="num">$333,333</td><td class="num">5.80%</td><td class="num">11.95×</td>
+          </tr>
+          <tr>
+            <td>2</td><td>5621 Klump Ave, North Hollywood</td><td class="num">9</td><td class="num">1987</td><td>Jul 2025</td><td class="num">$2,450,000</td><td class="num">$272,222</td><td class="num">5.31%</td><td class="num">13.01×</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="footer-note">Comp cap rates and GRMs reflect stabilized in-place rents. Colfax is priced to reflect its current income gap — buyers underwriting to a 7.03% pro forma cap rate at $1,500,000 will find the pricing logic consistent with the comp trading band. See Range of Value for full price sensitivity.</p>
+  </section>
+
+  <section>
+    <span class="section-tag">Pricing Recommendation</span>
+    <h2>Opinion of Value</h2>
+    <div class="recommend">
+      <h3>Suggested List Price</h3>
+      <div class="price-band">$1,500,000</div>
+      <div class="price-band-sub">$187,500 per unit &nbsp;·&nbsp; 8 studios &nbsp;·&nbsp; 4,524 SF building &nbsp;·&nbsp; See <a href="sensitivity.html" style="color:#b8985a">Range of Value</a> for full sensitivity</div>
+      <div class="price-ladder">
+        <div class="price-rung"><div class="price-rung-tag">Price / Unit</div><div class="price-rung-val">$187,500</div><div class="price-rung-sub">8 units</div></div>
+        <div class="price-rung"><div class="price-rung-tag">In-Place Cap</div><div class="price-rung-val">4.65%</div><div class="price-rung-sub">$69,777 NOI</div></div>
+        <div class="price-rung"><div class="price-rung-tag">Pro Forma Cap</div><div class="price-rung-val">7.03%</div><div class="price-rung-sub">$105,383 NOI</div></div>
+        <div class="price-rung"><div class="price-rung-tag">In-Place GRM</div><div class="price-rung-val">12.09×</div><div class="price-rung-sub">$124,080 GSR</div></div>
+        <div class="price-rung"><div class="price-rung-tag">Pro Forma GRM</div><div class="price-rung-val">9.22×</div><div class="price-rung-sub">$162,720 GSR</div></div>
+      </div>
+    </div>
+    <h3>Pricing Rationale</h3>
+    <p>The two closed comparables in the corridor — 11218 Oxnard St and 5621 Klump Ave — traded at $272,222–$333,333 per unit at 5.31–5.80% cap rates on stabilized rents. At $187,500 per unit, 5638 Colfax is priced to reflect its current income position, with the upside embedded in the rent gap. Buyers who correctly model the value-add thesis will underwrite to the 7.03% pro forma cap rate — a 120–175 basis point spread over the comps — as compensation for the lease-up period.</p>
+    <p>The non-RSO designation supports pricing at the upper end of this range. In the North Hollywood and Valley Village submarket, non-RSO vintage consistently commands a premium over RSO-encumbered product of the same size and vintage. The debt-free delivery further broadens the buyer pool.</p>
+    <p style="margin-bottom:0"><strong>Expected trade range: $1,375,000 – $1,500,000</strong> based on LAAA's closed transaction experience with comparable Non-RSO value-add assets in this corridor.</p>
+  </section>
+
+  <section>
+    <span class="section-tag">The Team</span>
+    <h2>LA Apartment Advisors &nbsp;·&nbsp; Marcus &amp; Millichap</h2>
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">458+</div><div class="stat-lbl">Closed Transactions</div></div>
+      <div class="stat-box"><div class="stat-num">$1.46B+</div><div class="stat-lbl">Closed Volume</div></div>
+      <div class="stat-box"><div class="stat-num">#1</div><div class="stat-lbl">LA County Multifamily<br>Trailing 3 Years</div></div>
+    </div>
+    <div class="team-leaders">
+      <div class="team-card">
+        <img class="headshot-lg" src="images/headshot_glen.png" alt="Glen Scher">
+        <div class="tc-name">Glen Scher</div>
+        <div class="tc-title">Senior Managing Director, Investments</div>
+        <div class="tc-bio">Glen Scher is a Senior Managing Director at Marcus &amp; Millichap's Encino office and a founding principal of LA Apartment Advisors. A graduate of UC Santa Barbara with a degree in Economics, Glen has built one of the most active multifamily investment sales practices in the San Fernando Valley, specializing in the disposition of stabilized and value-add apartment assets from 4 to 150 units. He was recognized as Rookie of the Year in 2016 and has consistently ranked among the top multifamily specialists in LA County.</div>
+        <div class="tc-contact"><a href="mailto:glen.scher@marcusmillichap.com">Glen.Scher@marcusmillichap.com</a><br>(818) 212-2808 &nbsp;|&nbsp; CA 01962976</div>
+      </div>
+      <div class="team-card">
+        <img class="headshot-lg" src="images/headshot_filip.png" alt="Filip Niculete">
+        <div class="tc-name">Filip Niculete</div>
+        <div class="tc-title">Senior Managing Director, Investments</div>
+        <div class="tc-bio">Filip Niculete was born in Romania and raised in the San Fernando Valley. A graduate of San Diego State University with a degree in Finance, Filip co-leads LA Apartment Advisors with a focus on multifamily investment sales across the Valley and Mid-Cities. His command of local regulatory frameworks — from non-RSO classifications and AB 1482 exposure to Opportunity Zone structuring — gives buyers and sellers a measurable analytical advantage.</div>
+        <div class="tc-contact"><a href="mailto:filip.niculete@marcusmillichap.com">Filip.Niculete@marcusmillichap.com</a><br>(818) 212-2748 &nbsp;|&nbsp; CA 01905352</div>
+      </div>
+    </div>
+    <h3>Team Members</h3>
+    <div class="team-roster">
+      <div class="roster-card"><img class="headshot-sm" src="images/headshot_aida.png" alt="Aida Memary"><div class="roster-name">Aida Memary</div><div class="roster-title">Associate, Investments</div></div>
+      <div class="roster-card"><img class="headshot-sm" src="images/headshot_logan.png" alt="Logan Ward"><div class="roster-name">Logan Ward</div><div class="roster-title">Associate, Investments</div></div>
+      <div class="roster-card"><img class="headshot-sm" src="images/headshot_morgan.png" alt="Morgan Wetmore"><div class="roster-name">Morgan Wetmore</div><div class="roster-title">Associate, Investments</div></div>
+      <div class="roster-card"><img class="headshot-sm" src="images/headshot_luka.png" alt="Luka Leader"><div class="roster-name">Luka Leader</div><div class="roster-title">Associate, Investments</div></div>
+      <div class="roster-card"><img class="headshot-sm" src="images/headshot_alexandro.png" alt="Alexandro Tapia"><div class="roster-name">Alexandro Tapia</div><div class="roster-title">Associate, Investments</div></div>
+      <div class="roster-card"><img class="headshot-sm" src="images/headshot_blake.png" alt="Blake Lewitt"><div class="roster-name">Blake Lewitt</div><div class="roster-title">Associate, Investments</div></div>
+      <div class="roster-card"><img class="headshot-sm" src="images/headshot_mike.png" alt="Mike Palade"><div class="roster-name">Mike Palade</div><div class="roster-title">Agent Assistant</div></div>
+      <div class="roster-card"><img class="headshot-sm" src="images/headshot_tony.png" alt="Tony H. Dang"><div class="roster-name">Tony H. Dang</div><div class="roster-title">Business Operations Manager</div></div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>LA Apartment Advisors &nbsp;·&nbsp; Marcus &amp; Millichap</strong></p>
+    <p>16830 Ventura Boulevard, Suite 100 &nbsp;·&nbsp; Encino, CA 91436 &nbsp;·&nbsp; <a href="https://www.laaa.com" style="color:#b8985a;text-decoration:none">laaa.com</a></p>
+    <p style="margin-top:12px;font-size:11px;color:#5a7288">Broker Opinion of Value prepared exclusively for The Baker Family. Does not constitute an appraisal or commitment to list or sell. All projections are estimates based on stated assumptions. &copy; 2026 Marcus &amp; Millichap.</p>
+  </div>
+</footer>
+
+</body>
+</html>
