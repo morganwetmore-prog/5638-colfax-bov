@@ -4,77 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>5638 Colfax — LAAA Track Record</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#1a1a1a;background:#f4f5f7;font-size:14px;-webkit-font-smoothing:antialiased}
-
     .topbar{background:#0a2540;padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:1000}
     .topbar .brand{font-size:12px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:1px}
     .topbar nav a{color:#a8b3c2;text-decoration:none;font-size:12px;margin-left:22px;letter-spacing:0.4px;transition:color .15s}
     .topbar nav a:hover,.topbar nav a.active{color:#b8985a}
-
     .page-header{background:#fff;border-bottom:2px solid #e6e9ef;padding:28px 48px}
     .page-header h1{font-size:20px;font-weight:700;color:#0a2540;margin-bottom:4px}
     .page-header .sub{font-size:13px;color:#666}
-
     .stat-bar{background:#0a2540;display:flex;padding:0 48px}
     .sitem{flex:1;padding:16px 0;text-align:center;border-right:1px solid rgba(255,255,255,0.1)}
     .sitem:last-child{border-right:none}
     .sitem .sv{font-size:20px;font-weight:700;color:#b8985a}
     .sitem .sl{font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:#a8b3c2;margin-top:2px}
-
     .map-section{background:#fff;border-bottom:2px solid #e6e9ef}
     .map-header{padding:18px 48px 0;display:flex;align-items:center;justify-content:space-between}
     .map-header h2{font-size:14px;font-weight:700;color:#0a2540;text-transform:uppercase;letter-spacing:0.5px}
     .map-legend{display:flex;gap:18px;font-size:11px;color:#555;align-items:center;flex-wrap:wrap}
     .leg-dot{width:11px;height:11px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle}
-    #map{height:480px;width:100%}
-
+    #map{height:520px;width:100%}
     .leaflet-popup-content-wrapper{border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,0.15)}
     .leaflet-popup-content{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:12px;line-height:1.6;margin:10px 14px}
     .pu-addr{font-weight:700;color:#0a2540;font-size:13px;margin-bottom:1px}
     .pu-meta{color:#555}
     .pu-price{font-weight:700;color:#b8985a;font-size:13px;margin-top:2px}
-
-    .inv-cta{background:#fff;margin:24px 48px 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.06);padding:20px 24px;display:flex;justify-content:space-between;align-items:center;border-left:4px solid #b8985a}
-    .inv-cta h3{font-size:15px;font-weight:700;color:#0a2540;margin-bottom:4px}
-    .inv-cta p{font-size:13px;color:#555}
-    .inv-cta a{display:inline-block;background:#0a2540;color:#fff;text-decoration:none;padding:10px 22px;border-radius:4px;font-size:13px;font-weight:600;white-space:nowrap;margin-left:24px}
-    .inv-cta a:hover{background:#143b6b}
-
-    .deals-section{max-width:980px;margin:24px auto 0;padding:0 32px 60px}
-
-    .submarket{background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.05);margin-bottom:20px;overflow:hidden}
-    .sm-header{background:#0a2540;color:#fff;padding:12px 20px;display:flex;align-items:center;gap:10px}
-    .sm-header h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
-    .sm-badge{background:#b8985a;color:#0a2540;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
-
-    table{width:100%;border-collapse:collapse}
-    thead th{background:#f8fafc;color:#444;text-align:left;padding:10px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #e6e9ef}
-    thead th.num{text-align:right}
-    tbody td{padding:11px 16px;border-bottom:1px solid #e6e9ef;font-size:13px;color:#333}
-    tbody tr:last-child td{border-bottom:none}
-    tbody tr:hover td{background:#fafbfc}
-    td.num{text-align:right;font-weight:600;color:#0a2540}
-    .subject-row td{background:#f4ead0!important;font-weight:600}
-    .badge-subject{display:inline-block;background:#0a2540;color:#fff;font-size:9px;font-weight:700;padding:1px 6px;border-radius:8px;margin-left:6px;vertical-align:middle}
-
-    .footer-agents{background:#0a2540;padding:22px 48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:3px solid #b8985a}
+    .footer-agents{background:#0a2540;padding:22px 48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:3px solid #b8985a;margin-top:0}
     .agent-item{color:#a8b3c2;font-size:12px;line-height:1.9}
     .agent-item strong{color:#fff;font-size:13px}
     .footer-bar{background:#060e18;color:#5a7288;font-size:10px;padding:10px 48px;text-align:center;letter-spacing:0.5px}
-
     @media(max-width:760px){
       .topbar{padding:0 14px}
       .topbar nav a{margin-left:8px;font-size:10px}
       .page-header,.stat-bar{padding-left:16px;padding-right:16px}
       .map-header{padding:14px 16px 0;flex-direction:column;gap:8px;align-items:flex-start}
-      #map{height:320px}
-      .inv-cta{margin:16px;flex-direction:column;gap:12px}
-      .inv-cta a{margin-left:0;text-align:center}
-      .deals-section{padding:0 12px 40px}
+      #map{height:360px}
       .footer-agents{padding:20px 16px;flex-direction:column}
-      .footer-bar{padding:10px 16px}
     }
   </style>
 </head>
@@ -91,101 +59,29 @@
     </nav>
   </div>
 
-  <iframe src="https://laaa.com/track-record"
-          style="display:block;width:100%;height:calc(100vh - 52px);border:none;"
-          allowfullscreen
-          loading="lazy"></iframe>
+  <div class="page-header">
+    <h1>LAAA Team — California Track Record</h1>
+    <div class="sub">460+ closed transactions across Los Angeles, Ventura, Santa Barbara and greater California since 2013</div>
+  </div>
 
-  <!-- deals-section removed; full track record embedded via iframe above -->
-  <div class="deals-section" style="display:none">
-    <div class="submarket">
-      <div class="sm-header">
-        <h3>North Hollywood &nbsp;/&nbsp; Valley Village</h3>
-        <span class="sm-badge">Immediate Submarket</span>
+  <div class="stat-bar">
+    <div class="sitem"><div class="sv">460+</div><div class="sl">Transactions Closed</div></div>
+    <div class="sitem"><div class="sv">$1.46B+</div><div class="sl">Sales Volume</div></div>
+    <div class="sitem"><div class="sv">96%</div><div class="sl">Sale-to-List Price Ratio</div></div>
+    <div class="sitem"><div class="sv">36</div><div class="sl">Median Days on Market</div></div>
+  </div>
+
+  <div class="map-section">
+    <div class="map-header">
+      <h2>Closed Transactions — Interactive Map</h2>
+      <div class="map-legend">
+        <span><span class="leg-dot" style="background:#b8985a;border:2px solid #7a5f1a"></span>Multifamily</span>
+        <span><span class="leg-dot" style="background:#3a6ea8;border:2px solid #1a4e88"></span>Land / Development</span>
+        <span><span class="leg-dot" style="background:#5a7a5a;border:2px solid #3a5a3a"></span>Commercial / NNN</span>
+        <span><span class="leg-dot" style="background:#0a2540;border:2px solid #b8985a"></span>Subject (5638 Colfax)</span>
       </div>
-      <table>
-        <thead><tr><th>Address</th><th>City</th><th>Type</th><th class="num">Units</th><th class="num">Sale Price</th></tr></thead>
-        <tbody>
-          <tr class="subject-row"><td>5638 N Colfax Ave <span class="badge-subject">SUBJECT</span></td><td>North Hollywood</td><td>Studio Apts</td><td class="num">8</td><td class="num">$1,500,000</td></tr>
-          <tr><td>4725 Radford Ave</td><td>Valley Village</td><td>Apartments</td><td class="num">21</td><td class="num">$10,237,500</td></tr>
-          <tr><td>11616 Burbank Blvd</td><td>North Hollywood</td><td>Apartments</td><td class="num">21</td><td class="num">$9,627,750</td></tr>
-          <tr><td>11700 Magnolia Blvd</td><td>Valley Village</td><td>Apartments</td><td class="num">19</td><td class="num">$8,525,000</td></tr>
-          <tr><td>5630 Fair Ave</td><td>North Hollywood</td><td>Apartments</td><td class="num">15</td><td class="num">$7,625,000</td></tr>
-          <tr><td>4637 Laurel Canyon Blvd</td><td>Valley Village</td><td>Apartments</td><td class="num">5</td><td class="num">$5,150,000</td></tr>
-          <tr><td>11143 Aqua Vista St</td><td>North Hollywood</td><td>Apartments</td><td class="num">10</td><td class="num">$2,300,000</td></tr>
-          <tr><td>5340 Ben Ave</td><td>Valley Village</td><td>Apartments</td><td class="num">4</td><td class="num">$1,200,000</td></tr>
-          <tr><td>12800 Oxnard St</td><td>North Hollywood</td><td>Apartments</td><td class="num">3</td><td class="num">$1,125,000</td></tr>
-          <tr><td>11344 Oxnard St</td><td>North Hollywood</td><td>Apartments</td><td class="num">3</td><td class="num">$890,000</td></tr>
-          <tr><td>6746 Ben Ave</td><td>North Hollywood</td><td>Land</td><td class="num">—</td><td class="num">$775,000</td></tr>
-          <tr><td>6740 Ben Ave</td><td>North Hollywood</td><td>Land</td><td class="num">—</td><td class="num">$775,000</td></tr>
-        </tbody>
-      </table>
     </div>
-
-    <!-- STUDIO CITY / TOLUCA LAKE -->
-    <div class="submarket">
-      <div class="sm-header">
-        <h3>Studio City &nbsp;/&nbsp; Toluca Lake</h3>
-        <span class="sm-badge">Adjacent Submarket</span>
-      </div>
-      <table>
-        <thead><tr><th>Address</th><th>City</th><th>Type</th><th class="num">Units</th><th class="num">Sale Price</th></tr></thead>
-        <tbody>
-          <tr><td>11915 Kling St</td><td>Studio City</td><td>Apartments</td><td class="num">80</td><td class="num">$25,050,000</td></tr>
-          <tr><td>4077–4083 Tujunga Ave</td><td>Studio City</td><td>Apartments</td><td class="num">16</td><td class="num">$7,925,000</td></tr>
-          <tr><td>12100 Valley Spring Ln</td><td>Studio City</td><td>Apartments</td><td class="num">20</td><td class="num">$7,900,000</td></tr>
-          <tr><td>12602 Moorpark St</td><td>Studio City</td><td>Apartments</td><td class="num">8</td><td class="num">$5,425,000</td></tr>
-          <tr><td>12325 Moorpark St</td><td>Studio City</td><td>Apartments</td><td class="num">12</td><td class="num">$3,920,000</td></tr>
-          <tr><td>12021 Hoffman St</td><td>Studio City</td><td>Apartments</td><td class="num">5</td><td class="num">$1,495,000</td></tr>
-          <tr><td>4455 Bakman Ave</td><td>Studio City</td><td>Apartments</td><td class="num">6</td><td class="num">$1,400,000</td></tr>
-          <tr><td>10611 Landale St</td><td>Toluca Lake</td><td>Apartments</td><td class="num">5</td><td class="num">$1,400,000</td></tr>
-          <tr><td>10725 Bloomfield St</td><td>Toluca Lake</td><td>Apartments</td><td class="num">4</td><td class="num">$1,350,000</td></tr>
-          <tr><td>4224 Whitsett Ave</td><td>Studio City</td><td>Land</td><td class="num">—</td><td class="num">$1,160,000</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- VAN NUYS -->
-    <div class="submarket">
-      <div class="sm-header">
-        <h3>Van Nuys</h3>
-        <span class="sm-badge">South SFV</span>
-      </div>
-      <table>
-        <thead><tr><th>Address</th><th>City</th><th>Type</th><th class="num">Units</th><th class="num">Sale Price</th></tr></thead>
-        <tbody>
-          <tr><td>6228 Fulton Ave</td><td>Van Nuys</td><td>Apartments</td><td class="num">30</td><td class="num">$8,740,000</td></tr>
-          <tr><td>14015 Oxnard St</td><td>Van Nuys</td><td>Apartments</td><td class="num">32</td><td class="num">$5,136,000</td></tr>
-          <tr><td>6716 Sylmar Ave</td><td>Van Nuys</td><td>Apartments</td><td class="num">12</td><td class="num">$3,500,000</td></tr>
-          <tr><td>14932 Kittridge St</td><td>Van Nuys</td><td>Apartments</td><td class="num">4</td><td class="num">$1,734,000</td></tr>
-          <tr><td>14658 Gilmore St</td><td>Van Nuys</td><td>Land</td><td class="num">—</td><td class="num">$1,690,000</td></tr>
-          <tr><td>5917 Buffalo Ave</td><td>Van Nuys</td><td>Apartments</td><td class="num">5</td><td class="num">$1,645,000</td></tr>
-          <tr><td>7303 Woodley Ave</td><td>Van Nuys</td><td>Apartments</td><td class="num">5</td><td class="num">$950,000</td></tr>
-          <tr><td>6311 Hazeltine Ave</td><td>Van Nuys</td><td>Apartments</td><td class="num">4</td><td class="num">$915,000</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- ENCINO / WOODLAND HILLS -->
-    <div class="submarket">
-      <div class="sm-header">
-        <h3>Encino &nbsp;/&nbsp; Woodland Hills</h3>
-        <span class="sm-badge">West SFV</span>
-      </div>
-      <table>
-        <thead><tr><th>Address</th><th>City</th><th>Type</th><th class="num">Units</th><th class="num">Sale Price</th></tr></thead>
-        <tbody>
-          <tr><td>21100 Erwin St</td><td>Woodland Hills</td><td>Commercial</td><td class="num">—</td><td class="num">$12,750,000</td></tr>
-          <tr><td>17800 Magnolia Blvd</td><td>Encino</td><td>Apartments</td><td class="num">21</td><td class="num">$6,100,000</td></tr>
-          <tr><td>22425 Del Valle St</td><td>Woodland Hills</td><td>Apartments</td><td class="num">5</td><td class="num">$2,725,000</td></tr>
-          <tr><td>15625 High Knoll Rd</td><td>Encino</td><td>Land</td><td class="num">—</td><td class="num">$1,550,000</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p style="font-size:11px;color:#888;font-style:italic;margin-top:8px;padding:0 4px">
-      Selected 2016–2026 South SFV transactions. Full history of 458+ closed deals at <a href="https://www.laaa.com/track-record" target="_blank" rel="noopener" style="color:#b8985a;text-decoration:none;font-weight:600">laaa.com/track-record</a>.
-    </p>
+    <div id="map"></div>
   </div>
 
   <div class="footer-agents">
@@ -196,197 +92,420 @@
   <div class="footer-bar">Marcus &amp; Millichap &nbsp;|&nbsp; 16830 Ventura Blvd, Suite 100, Encino, CA 91436 &nbsp;|&nbsp; (818) 212-2700</div>
 
   <script>
-    const map = L.map('map', { zoomControl: true }).setView([34.178, -118.415], 12);
-
+    const map = L.map('map', { zoomControl: true }).setView([34.2, -118.5], 9);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      maxZoom: 18
+      maxZoom: 19
     }).addTo(map);
 
     const sty = {
-      apt:  { radius:7, fillColor:'#b8985a', color:'#7a5f1a', weight:1.5, fillOpacity:0.9 },
-      land: { radius:7, fillColor:'#3a6ea8', color:'#1a4e88', weight:1.5, fillOpacity:0.9 },
-      comm: { radius:7, fillColor:'#5a7a5a', color:'#3a5a3a', weight:1.5, fillOpacity:0.9 }
+      apt:  { radius:7, fillColor:'#b8985a', color:'#7a5f1a', weight:1.5, fillOpacity:0.85 },
+      land: { radius:7, fillColor:'#3a6ea8', color:'#1a4e88', weight:1.5, fillOpacity:0.85 },
+      comm: { radius:7, fillColor:'#5a7a5a', color:'#3a5a3a', weight:1.5, fillOpacity:0.85 }
     };
 
-    // All SFV closings 2017-2025 from LAAA track record + broader LA deals
     const deals = [
-      // ── 2017 ──
-      { ll:[34.193,-118.459],  t:'apt',  addr:'7453 Haskell Ave',         city:'Van Nuys',        u:'10 units',  p:'$2,253,000' },
-      { ll:[34.149,-118.426],  t:'apt',  addr:'4535 Murietta Ave',        city:'Sherman Oaks',    u:'13 units',  p:'$3,900,000' },
-      { ll:[34.192,-118.388],  t:'apt',  addr:'12647 Vanowen St',         city:'North Hollywood', u:'12 units',  p:'$2,150,000' },
-      { ll:[34.179,-118.468],  t:'apt',  addr:'6551 Woodley Ave',         city:'Van Nuys',        u:'7 units',   p:'$1,300,000' },
-      { ll:[34.184,-118.454],  t:'apt',  addr:'6933 Sepulveda Blvd',      city:'Van Nuys',        u:'17 units',  p:'$3,060,000' },
-      { ll:[34.184,-118.500],  t:'apt',  addr:'6930 Balboa Blvd',         city:'Van Nuys',        u:'10 units',  p:'$5,550,000' },
-      { ll:[34.159,-118.359],  t:'apt',  addr:'10725 Bloomfield St',      city:'Toluca Lake',     u:'4 units',   p:'$1,350,000' },
-      { ll:[34.193,-118.387],  t:'apt',  addr:'11659 Hamlin St',          city:'North Hollywood', u:'6 units',   p:'$1,215,000' },
-      { ll:[34.162,-118.445],  t:'apt',  addr:'14224 Riverside Dr',       city:'Sherman Oaks',    u:'9 units',   p:'$5,450,000' },
-      { ll:[34.168,-118.378],  t:'apt',  addr:'5543 Case Ave',            city:'North Hollywood', u:'18 units',  p:'$4,700,000' },
-      { ll:[34.185,-118.323],  t:'apt',  addr:'1213 N Screenland Dr',     city:'Burbank',         u:'6 units',   p:'$1,800,000' },
-      { ll:[34.192,-118.384],  t:'apt',  addr:'12149 Oxnard St',          city:'North Hollywood', u:'8 units',   p:'$2,437,500' },
-      { ll:[34.198,-118.598],  t:'apt',  addr:'21909 Lanark St',          city:'Canoga Park',     u:'33 units',  p:'$6,515,000' },
-      { ll:[34.234,-118.493],  t:'apt',  addr:'9339 Burnet Ave',          city:'North Hills',     u:'6 units',   p:'$2,970,000' },
-      { ll:[34.169,-118.382],  t:'apt',  addr:'12101 Emelita St',         city:'Valley Village',  u:'12 units',  p:'$2,000,000' },
-      { ll:[34.283,-118.514],  t:'apt',  addr:'11541 Blucher Ave',        city:'Granada Hills',   u:'52 units',  p:'$19,525,000' },
-      { ll:[34.179,-118.308],  t:'apt',  addr:'143 N Maple St',           city:'Burbank',         u:'4 units',   p:'$1,475,000' },
-      { ll:[34.162,-118.446],  t:'apt',  addr:'14316 Riverside Dr',       city:'Sherman Oaks',    u:'8 units',   p:'$2,410,000' },
-      { ll:[34.195,-118.381],  t:'apt',  addr:'11601 Sylvan St',          city:'North Hollywood', u:'12 units',  p:'$2,175,000' },
-      { ll:[34.177,-118.381],  t:'apt',  addr:'11063 Cumpston St',        city:'North Hollywood', u:'8 units',   p:'$3,109,000' },
-      { ll:[34.196,-118.641],  t:'apt',  addr:'23130 Sherman Place',      city:'West Hills',      u:'39 units',  p:'$19,950,000' },
-      { ll:[34.199,-118.469],  t:'apt',  addr:'14607 Calvert St',         city:'Van Nuys',        u:'18 units',  p:'$5,000,000' },
-      { ll:[34.192,-118.398],  t:'apt',  addr:'13253 Vanowen St',         city:'North Hollywood', u:'17 units',  p:'$3,300,000' },
-      { ll:[34.149,-118.431],  t:'land', addr:'4615 Kester Ave',          city:'Sherman Oaks',    u:'Land',      p:'$1,225,000' },
-      { ll:[34.166,-118.377],  t:'land', addr:'5330 Radford Ave',         city:'Valley Village',  u:'Land',      p:'$1,100,000' },
-      { ll:[34.154,-118.396],  t:'land', addr:'4224 Whitsett Ave',        city:'Studio City',     u:'Land',      p:'$1,160,000' },
-      { ll:[34.147,-118.252],  t:'apt',  addr:'632 Irving Ave',           city:'Glendale',        u:'Other',     p:'$1,145,000' },
-      // ── 2018 ──
-      { ll:[34.166,-118.385],  t:'apt',  addr:'5222 Hermitage Ave',       city:'Valley Village',  u:'20 units',  p:'$5,650,000' },
-      { ll:[34.261,-118.596],  t:'apt',  addr:'9947 De Soto Ave',         city:'Chatsworth',      u:'64 units',  p:'$15,200,000' },
-      { ll:[34.195,-118.590],  t:'apt',  addr:'21320 Parthenia St',       city:'Canoga Park',     u:'24 units',  p:'$7,205,000' },
-      { ll:[34.234,-118.491],  t:'apt',  addr:'9001 Orion Ave',           city:'North Hills',     u:'18 units',  p:'$3,200,000' },
-      { ll:[34.195,-118.380],  t:'apt',  addr:'11561 Sylvan St',          city:'North Hollywood', u:'6 units',   p:'$1,185,000' },
-      { ll:[34.172,-118.382],  t:'apt',  addr:'12360 Magnolia Blvd',      city:'Valley Village',  u:'12 units',  p:'$3,800,000' },
-      { ll:[34.149,-118.426],  t:'apt',  addr:'4522 Murietta Ave',        city:'Sherman Oaks',    u:'13 units',  p:'$3,500,000' },
-      { ll:[34.167,-118.385],  t:'apt',  addr:'5451 Hermitage Ave',       city:'Valley Village',  u:'10 units',  p:'$3,440,000' },
-      { ll:[34.198,-118.574],  t:'apt',  addr:'19916 Roscoe Blvd',        city:'Winnetka',        u:'97 units',  p:'$15,550,000' },
-      { ll:[34.204,-118.575],  t:'apt',  addr:'19950 Roscoe Blvd',        city:'Winnetka',        u:'31 units',  p:'$6,050,000' },
-      { ll:[34.157,-118.452],  t:'apt',  addr:'15028 Dickens St',         city:'Sherman Oaks',    u:'10 units',  p:'$3,165,000' },
-      { ll:[34.282,-118.489],  t:'apt',  addr:'17521 San Jose St',        city:'Granada Hills',   u:'4 units',   p:'$1,300,000' },
-      { ll:[34.188,-118.430],  t:'apt',  addr:'13210 Victory Blvd',       city:'Van Nuys',        u:'29 units',  p:'$3,900,000' },
-      { ll:[34.162,-118.396],  t:'apt',  addr:'4400 Farmdale Ave',        city:'North Hollywood', u:'6 units',   p:'$2,125,000' },
-      { ll:[34.143,-118.252],  t:'apt',  addr:'237 Thompson Ave',         city:'Glendale',        u:'6 units',   p:'$1,750,000' },
-      { ll:[34.206,-118.455],  t:'apt',  addr:'16004 Cantlay St',         city:'Van Nuys',        u:'12 units',  p:'$2,100,000' },
-      { ll:[34.160,-118.395],  t:'apt',  addr:'5055 Laurel Canyon Blvd', city:'Valley Village',  u:'5 units',   p:'$1,550,000' },
-      { ll:[34.149,-118.426],  t:'apt',  addr:'4474 Murietta Ave',        city:'Sherman Oaks',    u:'8 units',   p:'$2,400,000' },
-      { ll:[34.179,-118.468],  t:'apt',  addr:'6551 Woodley Ave',         city:'Van Nuys',        u:'7 units',   p:'$1,660,000' },
-      { ll:[34.200,-118.533],  t:'apt',  addr:'Wyandotte & Baird',        city:'Reseda',          u:'39 units',  p:'$9,275,000' },
-      { ll:[34.157,-118.452],  t:'land', addr:'15058 Valleyheart Dr',     city:'Sherman Oaks',    u:'Land',      p:'$660,000' },
-      { ll:[34.175,-118.306],  t:'comm', addr:'401 S Flower St',          city:'Burbank',         u:'Other',     p:'$1,600,000' },
+      // ── SFV 2017 ──
+      { ll:[34.193,-118.459], t:'apt',  addr:'7453 Haskell Ave',        city:'Van Nuys',        u:'10 units',  p:'$2,253,000' },
+      { ll:[34.149,-118.426], t:'apt',  addr:'4535 Murietta Ave',       city:'Sherman Oaks',    u:'13 units',  p:'$3,900,000' },
+      { ll:[34.192,-118.388], t:'apt',  addr:'12647 Vanowen St',        city:'North Hollywood', u:'12 units',  p:'$2,150,000' },
+      { ll:[34.179,-118.468], t:'apt',  addr:'6551 Woodley Ave',        city:'Van Nuys',        u:'7 units',   p:'$1,300,000' },
+      { ll:[34.184,-118.454], t:'apt',  addr:'6933 Sepulveda Blvd',     city:'Van Nuys',        u:'17 units',  p:'$3,060,000' },
+      { ll:[34.184,-118.500], t:'apt',  addr:'6930 Balboa Blvd',        city:'Van Nuys',        u:'10 units',  p:'$5,550,000' },
+      { ll:[34.159,-118.359], t:'apt',  addr:'10725 Bloomfield St',     city:'Toluca Lake',     u:'4 units',   p:'$1,350,000' },
+      { ll:[34.193,-118.387], t:'apt',  addr:'11659 Hamlin St',         city:'North Hollywood', u:'6 units',   p:'$1,215,000' },
+      { ll:[34.162,-118.445], t:'apt',  addr:'14224 Riverside Dr',      city:'Sherman Oaks',    u:'9 units',   p:'$5,450,000' },
+      { ll:[34.168,-118.378], t:'apt',  addr:'5543 Case Ave',           city:'North Hollywood', u:'18 units',  p:'$4,700,000' },
+      { ll:[34.185,-118.323], t:'apt',  addr:'1213 N Screenland Dr',    city:'Burbank',         u:'6 units',   p:'$1,800,000' },
+      { ll:[34.192,-118.384], t:'apt',  addr:'12149 Oxnard St',         city:'North Hollywood', u:'8 units',   p:'$2,437,500' },
+      { ll:[34.198,-118.598], t:'apt',  addr:'21909 Lanark St',         city:'Canoga Park',     u:'33 units',  p:'$6,515,000' },
+      { ll:[34.234,-118.493], t:'apt',  addr:'9339 Burnet Ave',         city:'North Hills',     u:'6 units',   p:'$2,970,000' },
+      { ll:[34.169,-118.382], t:'apt',  addr:'12101 Emelita St',        city:'Valley Village',  u:'12 units',  p:'$2,000,000' },
+      { ll:[34.283,-118.514], t:'apt',  addr:'11541 Blucher Ave',       city:'Granada Hills',   u:'52 units',  p:'$19,525,000' },
+      { ll:[34.179,-118.308], t:'apt',  addr:'143 N Maple St',          city:'Burbank',         u:'4 units',   p:'$1,475,000' },
+      { ll:[34.162,-118.446], t:'apt',  addr:'14316 Riverside Dr',      city:'Sherman Oaks',    u:'8 units',   p:'$2,410,000' },
+      { ll:[34.195,-118.381], t:'apt',  addr:'11601 Sylvan St',         city:'North Hollywood', u:'12 units',  p:'$2,175,000' },
+      { ll:[34.177,-118.381], t:'apt',  addr:'11063 Cumpston St',       city:'North Hollywood', u:'8 units',   p:'$3,109,000' },
+      { ll:[34.196,-118.641], t:'apt',  addr:'23130 Sherman Place',     city:'West Hills',      u:'39 units',  p:'$19,950,000' },
+      { ll:[34.199,-118.469], t:'apt',  addr:'14607 Calvert St',        city:'Van Nuys',        u:'18 units',  p:'$5,000,000' },
+      { ll:[34.192,-118.398], t:'apt',  addr:'13253 Vanowen St',        city:'North Hollywood', u:'17 units',  p:'$3,300,000' },
+      { ll:[34.149,-118.431], t:'land', addr:'4615 Kester Ave',         city:'Sherman Oaks',    u:'Land',      p:'$1,225,000' },
+      { ll:[34.166,-118.377], t:'land', addr:'5330 Radford Ave',        city:'Valley Village',  u:'Land',      p:'$1,100,000' },
+      { ll:[34.154,-118.396], t:'land', addr:'4224 Whitsett Ave',       city:'Studio City',     u:'Land',      p:'$1,160,000' },
+      { ll:[34.147,-118.252], t:'comm', addr:'632 Irving Ave',          city:'Glendale',        u:'Other',     p:'$1,145,000' },
+      { ll:[34.228,-118.237], t:'apt',  addr:'2806 Piedmont Ave',       city:'La Crescenta',    u:'9 units',   p:'$2,550,000' },
+      { ll:[34.698,-118.137], t:'apt',  addr:'44756 2nd St E',          city:'Lancaster',       u:'5 units',   p:'$415,000' },
+      { ll:[34.032,-117.812], t:'apt',  addr:'3932 N Bonita St',        city:'Spring Valley',   u:'8 units',   p:'$1,485,000' },
+      // ── SFV / Greater LA 2018 ──
+      { ll:[34.166,-118.385], t:'apt',  addr:'5222 Hermitage Ave',      city:'Valley Village',  u:'20 units',  p:'$5,650,000' },
+      { ll:[34.261,-118.596], t:'apt',  addr:'9947 De Soto Ave',        city:'Chatsworth',      u:'64 units',  p:'$15,200,000' },
+      { ll:[34.195,-118.590], t:'apt',  addr:'21320 Parthenia St',      city:'Canoga Park',     u:'24 units',  p:'$7,205,000' },
+      { ll:[34.234,-118.491], t:'apt',  addr:'9001 Orion Ave',          city:'North Hills',     u:'18 units',  p:'$3,200,000' },
+      { ll:[34.195,-118.380], t:'apt',  addr:'11561 Sylvan St',         city:'North Hollywood', u:'6 units',   p:'$1,185,000' },
+      { ll:[34.172,-118.382], t:'apt',  addr:'12360 Magnolia Blvd',     city:'Valley Village',  u:'12 units',  p:'$3,800,000' },
+      { ll:[34.149,-118.426], t:'apt',  addr:'4522 Murietta Ave',       city:'Sherman Oaks',    u:'13 units',  p:'$3,500,000' },
+      { ll:[34.167,-118.385], t:'apt',  addr:'5451 Hermitage Ave',      city:'Valley Village',  u:'10 units',  p:'$3,440,000' },
+      { ll:[34.198,-118.574], t:'apt',  addr:'19916 Roscoe Blvd',       city:'Winnetka',        u:'97 units',  p:'$15,550,000' },
+      { ll:[34.204,-118.575], t:'apt',  addr:'19950 Roscoe Blvd',       city:'Winnetka',        u:'31 units',  p:'$6,050,000' },
+      { ll:[34.157,-118.452], t:'apt',  addr:'15028 Dickens St',        city:'Sherman Oaks',    u:'10 units',  p:'$3,165,000' },
+      { ll:[34.282,-118.489], t:'apt',  addr:'17521 San Jose St',       city:'Granada Hills',   u:'4 units',   p:'$1,300,000' },
+      { ll:[34.188,-118.430], t:'apt',  addr:'13210 Victory Blvd',      city:'Van Nuys',        u:'29 units',  p:'$3,900,000' },
+      { ll:[34.162,-118.396], t:'apt',  addr:'4400 Farmdale Ave',       city:'North Hollywood', u:'6 units',   p:'$2,125,000' },
+      { ll:[34.143,-118.252], t:'apt',  addr:'237 Thompson Ave',        city:'Glendale',        u:'6 units',   p:'$1,750,000' },
+      { ll:[34.206,-118.455], t:'apt',  addr:'16004 Cantlay St',        city:'Van Nuys',        u:'12 units',  p:'$2,100,000' },
+      { ll:[34.160,-118.395], t:'apt',  addr:'5055 Laurel Canyon Blvd', city:'Valley Village',  u:'5 units',   p:'$1,550,000' },
+      { ll:[34.149,-118.426], t:'apt',  addr:'4474 Murietta Ave',       city:'Sherman Oaks',    u:'8 units',   p:'$2,400,000' },
+      { ll:[34.179,-118.468], t:'apt',  addr:'6551 Woodley Ave',        city:'Van Nuys',        u:'7 units',   p:'$1,660,000' },
+      { ll:[34.200,-118.533], t:'apt',  addr:'Wyandotte & Baird',       city:'Reseda',          u:'39 units',  p:'$9,275,000' },
+      { ll:[34.157,-118.452], t:'land', addr:'15058 Valleyheart Dr',    city:'Sherman Oaks',    u:'Land',      p:'$660,000' },
+      { ll:[34.175,-118.306], t:'comm', addr:'401 S Flower St',         city:'Burbank',         u:'Other',     p:'$1,600,000' },
+      { ll:[34.148,-118.153], t:'apt',  addr:'837 N El Molino Ave',     city:'Pasadena',        u:'6 units',   p:'$2,050,000' },
+      { ll:[34.138,-118.163], t:'apt',  addr:'139 S Rosemead Blvd',     city:'Pasadena',        u:'6 units',   p:'$1,125,000' },
+      { ll:[34.138,-118.163], t:'land', addr:'180 S Rosemead Blvd',     city:'Pasadena',        u:'Land',      p:'$1,750,000' },
+      { ll:[34.140,-118.152], t:'apt',  addr:'340 S Madison Ave',       city:'Pasadena',        u:'6 units',   p:'$2,025,000' },
+      { ll:[34.048,-118.358], t:'apt',  addr:'1630 S Gramercy Pl',      city:'Mid-City',        u:'7 units',   p:'$2,200,000' },
+      { ll:[34.073,-118.398], t:'apt',  addr:'320 S Doheny Dr',         city:'Beverly Hills',   u:'7 units',   p:'$3,325,000' },
+      { ll:[34.013,-118.477], t:'apt',  addr:'1537 Centinela Ave',      city:'Santa Monica',    u:'7 units',   p:'$2,600,000' },
+      { ll:[34.016,-118.477], t:'apt',  addr:'1802 Delaware Ave',       city:'Santa Monica',    u:'5 units',   p:'$1,580,000' },
+      { ll:[34.040,-118.448], t:'apt',  addr:'3211 Colorado Ave',       city:'Santa Monica',    u:'4 units',   p:'$1,875,000' },
+      { ll:[34.054,-118.394], t:'land', addr:'1127 S Shenandoah St',    city:'Beverlywood',     u:'Land',      p:'$4,490,000' },
+      { ll:[34.054,-118.396], t:'apt',  addr:'1489 S Canfield Ave',     city:'Beverlywood',     u:'15 units',  p:'$7,230,000' },
+      { ll:[34.144,-117.999], t:'apt',  addr:'243 W Colorado Blvd',     city:'Monrovia',        u:'8 units',   p:'$1,510,000' },
+      { ll:[34.145,-118.158], t:'land', addr:'233 S Euclid Ave',        city:'Pasadena',        u:'Land',      p:'$12,500,000' },
+      { ll:[34.055,-117.750], t:'land', addr:'1833 N Garey Ave',        city:'Pomona',          u:'Land',      p:'$1,600,000' },
       // ── 2019 ──
-      { ll:[34.234,-118.493],  t:'apt',  addr:'9009 Burnet Ave',          city:'North Hills',     u:'43 units',  p:'$16,250,000' },
-      { ll:[34.181,-118.468],  t:'apt',  addr:'6701 Woodley Ave',         city:'Van Nuys',        u:'17 units',  p:'$1,225,000' },
-      { ll:[34.158,-118.423],  t:'apt',  addr:'13312 Woodbridge St',      city:'Sherman Oaks',    u:'5 units',   p:'$1,445,000' },
-      { ll:[34.149,-118.428],  t:'apt',  addr:'4334 Mammoth Ave',         city:'Sherman Oaks',    u:'10 units',  p:'$3,330,000' },
-      { ll:[34.159,-118.430],  t:'apt',  addr:'13804 Moorpark St',        city:'Sherman Oaks',    u:'6 units',   p:'$1,270,000' },
-      { ll:[34.167,-118.264],  t:'apt',  addr:'805 W Glenoaks Blvd',      city:'Glendale',        u:'3 units',   p:'$1,040,000' },
-      { ll:[34.200,-118.557],  t:'apt',  addr:'18529 Calvert St',         city:'Reseda',          u:'24 units',  p:'$9,725,000' },
-      { ll:[34.196,-118.467],  t:'apt',  addr:'14154 Sylvan St',          city:'Van Nuys',        u:'4 units',   p:'$1,050,000' },
-      { ll:[34.194,-118.420],  t:'apt',  addr:'7461 Hazeltine Ave',       city:'Van Nuys',        u:'29 units',  p:'$4,350,000' },
-      { ll:[34.169,-118.593],  t:'apt',  addr:'22425 Del Valle St',       city:'Woodland Hills',  u:'5 units',   p:'$2,725,000' },
-      { ll:[34.202,-118.577],  t:'apt',  addr:'20326 Saticoy St',         city:'Winnetka',        u:'33 units',  p:'$5,200,000' },
-      { ll:[34.143,-118.246],  t:'apt',  addr:'1443 E Maple St',          city:'Glendale',        u:'6 units',   p:'$1,575,000' },
-      { ll:[34.242,-118.536],  t:'apt',  addr:'8762 Etiwanda Ave',        city:'Northridge',      u:'29 units',  p:'$6,950,000' },
-      { ll:[34.162,-118.447],  t:'land', addr:'14419 Riverside Dr',       city:'Sherman Oaks',    u:'Land',      p:'$2,050,000' },
-      { ll:[34.192,-118.397],  t:'apt',  addr:'12828 Oxnard St',          city:'North Hollywood', u:'14 units',  p:'$2,975,000' },
+      { ll:[34.234,-118.493], t:'apt',  addr:'9009 Burnet Ave',         city:'North Hills',     u:'43 units',  p:'$16,250,000' },
+      { ll:[34.181,-118.468], t:'apt',  addr:'6701 Woodley Ave',        city:'Van Nuys',        u:'17 units',  p:'$1,225,000' },
+      { ll:[34.158,-118.423], t:'apt',  addr:'13312 Woodbridge St',     city:'Sherman Oaks',    u:'5 units',   p:'$1,445,000' },
+      { ll:[34.149,-118.428], t:'apt',  addr:'4334 Mammoth Ave',        city:'Sherman Oaks',    u:'10 units',  p:'$3,330,000' },
+      { ll:[34.159,-118.430], t:'apt',  addr:'13804 Moorpark St',       city:'Sherman Oaks',    u:'6 units',   p:'$1,270,000' },
+      { ll:[34.200,-118.557], t:'apt',  addr:'18529 Calvert St',        city:'Reseda',          u:'24 units',  p:'$9,725,000' },
+      { ll:[34.196,-118.467], t:'apt',  addr:'14154 Sylvan St',         city:'Van Nuys',        u:'4 units',   p:'$1,050,000' },
+      { ll:[34.169,-118.593], t:'apt',  addr:'22425 Del Valle St',      city:'Woodland Hills',  u:'5 units',   p:'$2,725,000' },
+      { ll:[34.202,-118.577], t:'apt',  addr:'20326 Saticoy St',        city:'Winnetka',        u:'33 units',  p:'$5,200,000' },
+      { ll:[34.143,-118.246], t:'apt',  addr:'1443 E Maple St',         city:'Glendale',        u:'6 units',   p:'$1,575,000' },
+      { ll:[34.242,-118.536], t:'apt',  addr:'8762 Etiwanda Ave',       city:'Northridge',      u:'29 units',  p:'$6,950,000' },
+      { ll:[34.162,-118.447], t:'land', addr:'14419 Riverside Dr',      city:'Sherman Oaks',    u:'Land',      p:'$2,050,000' },
+      { ll:[34.192,-118.397], t:'apt',  addr:'12828 Oxnard St',         city:'North Hollywood', u:'14 units',  p:'$2,975,000' },
+      { ll:[34.164,-118.264], t:'apt',  addr:'805 W Glenoaks Blvd',     city:'Glendale',        u:'3 units',   p:'$1,040,000' },
+      { ll:[34.059,-118.323], t:'apt',  addr:'10939 Ohio Ave',          city:'Westwood',        u:'33 units',  p:'$3,800,000' },
+      { ll:[34.106,-117.593], t:'apt',  addr:'8231 Tapia Via Dr',       city:'Rancho Cucamonga',u:'6 units',   p:'$1,610,000' },
+      { ll:[34.010,-118.360], t:'apt',  addr:'4009 S Muirfield Rd',     city:'Baldwin Hills',   u:'10 units',  p:'$2,300,000' },
+      { ll:[34.144,-118.152], t:'comm', addr:'130 S Euclid Ave',        city:'Pasadena',        u:'Office',    p:'$4,575,000' },
+      { ll:[34.070,-118.303], t:'land', addr:'667 N Wilton Place',      city:'Koreatown',       u:'Land',      p:'$3,425,000' },
+      { ll:[34.014,-118.419], t:'apt',  addr:'3146 S Halm Ave',         city:'Palms',           u:'5 units',   p:'$1,425,000' },
+      { ll:[34.050,-118.336], t:'apt',  addr:'1048 S Orange Dr',        city:'Mid-City',        u:'4 units',   p:'$1,850,000' },
+      { ll:[34.095,-118.292], t:'land', addr:'1438 Mariposa Ave',       city:'East Hollywood',  u:'Land',      p:'$2,350,000' },
+      { ll:[34.096,-118.283], t:'land', addr:'5016 W Sunset Blvd',      city:'East Hollywood',  u:'Land',      p:'$2,137,500' },
+      { ll:[33.988,-118.276], t:'apt',  addr:'810 W 42nd Place',        city:'South Los Angeles',u:'5 units',  p:'$750,000' },
+      { ll:[34.099,-118.319], t:'apt',  addr:'6026 Barton Ave',         city:'Hollywood',       u:'4 units',   p:'$1,385,000' },
+      { ll:[34.079,-118.259], t:'apt',  addr:'716 Parkman Ave',         city:'Echo Park',       u:'3 units',   p:'$1,025,000' },
+      { ll:[34.148,-118.127], t:'apt',  addr:'106 N Allen Ave',         city:'Pasadena',        u:'5 units',   p:'$1,325,000' },
+      { ll:[34.116,-118.130], t:'apt',  addr:'332 Pasadena Ave',        city:'South Pasadena',  u:'5 units',   p:'$1,900,000' },
+      { ll:[34.148,-118.145], t:'land', addr:'913 Boston Ct',           city:'Pasadena',        u:'Land',      p:'$1,600,000' },
+      { ll:[34.033,-118.435], t:'land', addr:'2454 Barry Ave',          city:'West LA',         u:'Land',      p:'$1,450,000' },
+      { ll:[34.033,-118.435], t:'land', addr:'2444 Barry Ave',          city:'Rancho Park',     u:'Land',      p:'$2,900,000' },
+      { ll:[34.095,-118.318], t:'apt',  addr:'1254 N Citrus Ave',       city:'Hollywood',       u:'8 units',   p:'$4,000,000' },
+      { ll:[34.149,-118.151], t:'apt',  addr:'759 N Raymond Ave',       city:'Pasadena',        u:'5 units',   p:'$1,050,000' },
+      { ll:[34.150,-118.126], t:'apt',  addr:'120 N Bonnie Ave',        city:'Pasadena',        u:'6 units',   p:'$1,700,000' },
+      { ll:[34.148,-118.132], t:'land', addr:'1233 S Bedford St (2019)',city:'Beverlywood',     u:'Land',      p:'$2,050,000' },
+      { ll:[34.030,-118.479], t:'apt',  addr:'1927 Cloverfield Blvd',   city:'Santa Monica',    u:'4 units',   p:'$3,075,000' },
+      { ll:[34.116,-118.118], t:'apt',  addr:'603 Mound Ave',           city:'South Pasadena',  u:'6 units',   p:'$2,150,000' },
+      { ll:[34.420,-119.698], t:'apt',  addr:'318 S Voluntario St',     city:'Santa Barbara',   u:'8 units',   p:'$2,295,000' },
+      { ll:[34.052,-118.356], t:'apt',  addr:'613 S Detroit St',        city:'Miracle Mile',    u:'6 units',   p:'$2,200,000' },
+      { ll:[34.095,-118.331], t:'apt',  addr:'753 Lillian Way',         city:'Hollywood',       u:'8 units',   p:'$5,500,000' },
+      { ll:[34.143,-118.762], t:'comm', addr:'28348 Roadside Dr',       city:'Agoura Hills',    u:'Office',    p:'$4,750,000' },
+      { ll:[34.055,-117.750], t:'apt',  addr:'1300 W Mission Blvd',     city:'Pomona',          u:'33 units',  p:'$1,050,000' },
+      { ll:[34.097,-118.345], t:'apt',  addr:'7714 Rosewood Ave',       city:'Fairfax',         u:'8 units',   p:'$3,186,000' },
+      { ll:[34.151,-118.144], t:'apt',  addr:'2047 N Raymond Ave',      city:'Pasadena',        u:'4 units',   p:'$1,650,000' },
+      { ll:[34.146,-118.144], t:'apt',  addr:'55 Arlington Dr',         city:'Pasadena',        u:'8 units',   p:'$3,600,000' },
+      { ll:[34.143,-118.148], t:'apt',  addr:'435 S Hudson Ave',        city:'Pasadena',        u:'9 units',   p:'$3,500,000' },
+      { ll:[34.194,-118.420], t:'apt',  addr:'7461 Hazeltine Ave',      city:'Van Nuys',        u:'29 units',  p:'$4,350,000' },
+      { ll:[34.016,-118.474], t:'land', addr:'2120 Lincoln Blvd',       city:'Santa Monica',    u:'Land',      p:'$5,250,000' },
+      { ll:[34.019,-118.481], t:'apt',  addr:'2416 20th St',            city:'Santa Monica',    u:'5 units',   p:'$2,052,000' },
       // ── 2020 ──
-      { ll:[34.195,-118.462],  t:'apt',  addr:'14019 Vanowen St',         city:'Van Nuys',        u:'5 units',   p:'$2,690,000' },
-      { ll:[34.266,-118.474],  t:'apt',  addr:'9919 Sepulveda Blvd',      city:'Mission Hills',   u:'18 units',  p:'$4,810,000' },
-      { ll:[34.157,-118.394],  t:'apt',  addr:'12325 Moorpark St',        city:'Studio City',     u:'12 units',  p:'$3,920,000' },
-      { ll:[34.196,-118.462],  t:'apt',  addr:'14403 Tiara St',           city:'Van Nuys',        u:'8 units',   p:'$5,450,000' },
-      { ll:[34.149,-118.429],  t:'apt',  addr:'4334 Mammoth Ave',         city:'Sherman Oaks',    u:'10 units',  p:'$3,350,000' },
-      { ll:[34.155,-118.392],  t:'apt',  addr:'12100 Valley Spring Ln',   city:'Studio City',     u:'20 units',  p:'$7,900,000' },
-      { ll:[34.157,-118.452],  t:'apt',  addr:'15028 Dickens St',         city:'Sherman Oaks',    u:'20 units',  p:'$5,550,000' },
-      { ll:[34.157,-118.453],  t:'apt',  addr:'14533 Dickens St',         city:'Sherman Oaks',    u:'8 units',   p:'$1,950,000' },
-      { ll:[34.157,-118.454],  t:'apt',  addr:'14826 Dickens St',         city:'Sherman Oaks',    u:'6 units',   p:'$1,875,000' },
-      { ll:[34.162,-118.382],  t:'apt',  addr:'4900 Riverton Ave',        city:'North Hollywood', u:'3 units',   p:'$1,050,000' },
-      { ll:[34.196,-118.467],  t:'apt',  addr:'14837 Delano St',          city:'Van Nuys',        u:'8 units',   p:'$1,762,500' },
-      { ll:[34.149,-118.427],  t:'apt',  addr:'4535 Murietta Ave',        city:'Sherman Oaks',    u:'13 units',  p:'$4,500,000' },
-      { ll:[34.162,-118.388],  t:'apt',  addr:'4904 Tujunga Ave',         city:'North Hollywood', u:'8 units',   p:'$2,300,000' },
-      { ll:[34.171,-118.595],  t:'comm', addr:'21100 Erwin St',           city:'Woodland Hills',  u:'Commercial',p:'$12,750,000' },
+      { ll:[34.195,-118.462], t:'apt',  addr:'14019 Vanowen St',        city:'Van Nuys',        u:'5 units',   p:'$2,690,000' },
+      { ll:[34.266,-118.474], t:'apt',  addr:'9919 Sepulveda Blvd',     city:'Mission Hills',   u:'18 units',  p:'$4,810,000' },
+      { ll:[34.157,-118.394], t:'apt',  addr:'12325 Moorpark St',       city:'Studio City',     u:'12 units',  p:'$3,920,000' },
+      { ll:[34.196,-118.462], t:'apt',  addr:'14403 Tiara St',          city:'Van Nuys',        u:'8 units',   p:'$5,450,000' },
+      { ll:[34.149,-118.429], t:'apt',  addr:'4334 Mammoth Ave',        city:'Sherman Oaks',    u:'10 units',  p:'$3,350,000' },
+      { ll:[34.155,-118.392], t:'apt',  addr:'12100 Valley Spring Ln',  city:'Studio City',     u:'20 units',  p:'$7,900,000' },
+      { ll:[34.157,-118.452], t:'apt',  addr:'15028 Dickens St',        city:'Sherman Oaks',    u:'20 units',  p:'$5,550,000' },
+      { ll:[34.157,-118.453], t:'apt',  addr:'14533 Dickens St',        city:'Sherman Oaks',    u:'8 units',   p:'$1,950,000' },
+      { ll:[34.157,-118.454], t:'apt',  addr:'14826 Dickens St',        city:'Sherman Oaks',    u:'6 units',   p:'$1,875,000' },
+      { ll:[34.162,-118.382], t:'apt',  addr:'4900 Riverton Ave',       city:'North Hollywood', u:'3 units',   p:'$1,050,000' },
+      { ll:[34.196,-118.467], t:'apt',  addr:'14837 Delano St',         city:'Van Nuys',        u:'8 units',   p:'$1,762,500' },
+      { ll:[34.149,-118.427], t:'apt',  addr:'4535 Murietta Ave',       city:'Sherman Oaks',    u:'13 units',  p:'$4,500,000' },
+      { ll:[34.162,-118.388], t:'apt',  addr:'4904 Tujunga Ave',        city:'North Hollywood', u:'8 units',   p:'$2,300,000' },
+      { ll:[34.171,-118.595], t:'comm', addr:'21100 Erwin St',          city:'Woodland Hills',  u:'Commercial',p:'$12,750,000' },
+      { ll:[34.013,-118.493], t:'apt',  addr:'2721 6th St',             city:'Santa Monica',    u:'22 units',  p:'$10,100,000' },
+      { ll:[34.017,-118.474], t:'apt',  addr:'1846 10th St',            city:'Santa Monica',    u:'10 units',  p:'$4,400,000' },
+      { ll:[34.018,-118.478], t:'apt',  addr:'848 19th St',             city:'Santa Monica',    u:'6 units',   p:'$3,750,000' },
+      { ll:[34.013,-118.489], t:'apt',  addr:'2683 34th St',            city:'Santa Monica',    u:'12 units',  p:'$4,100,000' },
+      { ll:[34.016,-118.481], t:'apt',  addr:'1111 12th St',            city:'Santa Monica',    u:'7 units',   p:'$2,750,000' },
+      { ll:[34.014,-118.419], t:'apt',  addr:'2011 Chariton St',        city:'Palms',           u:'6 units',   p:'$2,112,000' },
+      { ll:[34.022,-118.398], t:'land', addr:'635 San Juan Ave',        city:'Venice',          u:'Land',      p:'$1,725,000' },
+      { ll:[34.085,-118.349], t:'apt',  addr:'9005 Keith Ave',          city:'West Hollywood',  u:'5 units',   p:'$2,500,000' },
+      { ll:[34.148,-118.152], t:'apt',  addr:'827 E Washington Blvd',   city:'Pasadena',        u:'8 units',   p:'$2,400,000' },
+      { ll:[34.148,-118.152], t:'apt',  addr:'940 N Summit Ave',        city:'Pasadena',        u:'3 units',   p:'$1,225,000' },
+      { ll:[33.884,-118.411], t:'apt',  addr:'230 40th St',             city:'Manhattan Beach', u:'5 units',   p:'$3,500,000' },
+      { ll:[34.216,-119.037], t:'apt',  addr:'520 Daily Dr',            city:'Camarillo',       u:'33 units',  p:'$8,075,000' },
+      { ll:[34.354,-119.059], t:'apt',  addr:'627 E Virginia Terrace',  city:'Santa Paula',     u:'7 units',   p:'$1,270,000' },
+      { ll:[34.170,-118.838], t:'apt',  addr:'1816 Los Feliz Dr',       city:'Thousand Oaks',   u:'25 units',  p:'$1,180,000' },
+      { ll:[34.212,-118.234], t:'apt',  addr:'2310 Montrose Ave',       city:'Montrose',        u:'5 units',   p:'$1,850,000' },
+      { ll:[34.579,-118.116], t:'apt',  addr:'1140 E Avenue Q12',       city:'Palmdale',        u:'14 units',  p:'$2,000,000' },
+      { ll:[34.095,-118.290], t:'apt',  addr:'1186 N New Hampshire Ave',city:'Silver Lake',     u:'6 units',   p:'$1,685,000' },
       // ── 2021 ──
-      { ll:[34.203,-118.456],  t:'apt',  addr:'15716 Saticoy St',         city:'Van Nuys',        u:'42 units',  p:'$14,200,000' },
-      { ll:[34.210,-118.442],  t:'apt',  addr:'6616 Sylmar Ave',          city:'Van Nuys',        u:'7 units',   p:'$2,500,000' },
-      { ll:[34.188,-118.431],  t:'apt',  addr:'13210 Victory Blvd',       city:'Van Nuys',        u:'30 units',  p:'$5,635,000' },
-      { ll:[34.229,-118.555],  t:'apt',  addr:'18521 Prairie St',         city:'Northridge',      u:'59 units',  p:'$15,250,000' },
-      { ll:[34.154,-118.395],  t:'apt',  addr:'4077 Tujunga Ave',         city:'Studio City',     u:'16 units',  p:'$7,925,000' },
-      { ll:[34.153,-118.434],  t:'apt',  addr:'4500 Vista Del Monte Ave', city:'Sherman Oaks',    u:'5 units',   p:'$1,745,000' },
-      { ll:[34.168,-118.378],  t:'apt',  addr:'5905 Whitnall Hwy',        city:'North Hollywood', u:'7 units',   p:'$1,325,000' },
-      { ll:[34.153,-118.382],  t:'apt',  addr:'11915 Kling St',           city:'Studio City',     u:'80 units',  p:'$25,050,000' },
-      { ll:[34.158,-118.396],  t:'apt',  addr:'4540 Laurel Canyon Blvd', city:'Valley Village',  u:'6 units',   p:'$1,700,000' },
-      { ll:[34.178,-118.379],  t:'apt',  addr:'10800 Hesby St',           city:'North Hollywood', u:'10 units',  p:'$3,330,000' },
-      { ll:[34.305,-118.437],  t:'apt',  addr:'13266 Foothill Blvd',      city:'Sylmar',          u:'28 units',  p:'$7,300,000' },
-      { ll:[34.169,-118.380],  t:'land', addr:'6028 Craner Ave',          city:'North Hollywood', u:'Land',      p:'$1,000,000' },
-      { ll:[34.204,-118.602],  t:'land', addr:'7403 Topanga Canyon Blvd', city:'Canoga Park',     u:'Land',      p:'$800,000' },
-      { ll:[34.163,-118.385],  t:'land', addr:'4433 Cartwright Ave',      city:'North Hollywood', u:'Land',      p:'$1,525,000' },
-      { ll:[34.166,-118.513],  t:'land', addr:'15625 High Knoll Rd',      city:'Encino',          u:'Land',      p:'$1,550,000' },
-      { ll:[34.196,-118.591],  t:'comm', addr:'21314 Sherman Way',        city:'Canoga Park',     u:'Other',     p:'$2,600,000' },
+      { ll:[34.203,-118.456], t:'apt',  addr:'15716 Saticoy St',        city:'Van Nuys',        u:'42 units',  p:'$14,200,000' },
+      { ll:[34.210,-118.442], t:'apt',  addr:'6616 Sylmar Ave',         city:'Van Nuys',        u:'7 units',   p:'$2,500,000' },
+      { ll:[34.188,-118.431], t:'apt',  addr:'13210 Victory Blvd',      city:'Van Nuys',        u:'30 units',  p:'$5,635,000' },
+      { ll:[34.229,-118.555], t:'apt',  addr:'18521 Prairie St',        city:'Northridge',      u:'59 units',  p:'$15,250,000' },
+      { ll:[34.154,-118.395], t:'apt',  addr:'4077 Tujunga Ave',        city:'Studio City',     u:'16 units',  p:'$7,925,000' },
+      { ll:[34.153,-118.434], t:'apt',  addr:'4500 Vista Del Monte Ave',city:'Sherman Oaks',    u:'5 units',   p:'$1,745,000' },
+      { ll:[34.168,-118.378], t:'apt',  addr:'5905 Whitnall Hwy',       city:'North Hollywood', u:'7 units',   p:'$1,325,000' },
+      { ll:[34.153,-118.382], t:'apt',  addr:'11915 Kling St',          city:'Studio City',     u:'80 units',  p:'$25,050,000' },
+      { ll:[34.158,-118.396], t:'apt',  addr:'4540 Laurel Canyon Blvd', city:'Valley Village',  u:'6 units',   p:'$1,700,000' },
+      { ll:[34.178,-118.379], t:'apt',  addr:'10800 Hesby St',          city:'North Hollywood', u:'10 units',  p:'$3,330,000' },
+      { ll:[34.305,-118.437], t:'apt',  addr:'13266 Foothill Blvd',     city:'Sylmar',          u:'28 units',  p:'$7,300,000' },
+      { ll:[34.169,-118.380], t:'land', addr:'6028 Craner Ave',         city:'North Hollywood', u:'Land',      p:'$1,000,000' },
+      { ll:[34.204,-118.602], t:'land', addr:'7403 Topanga Canyon Blvd',city:'Canoga Park',     u:'Land',      p:'$800,000' },
+      { ll:[34.163,-118.385], t:'land', addr:'4433 Cartwright Ave',     city:'North Hollywood', u:'Land',      p:'$1,525,000' },
+      { ll:[34.166,-118.513], t:'land', addr:'15625 High Knoll Rd',     city:'Encino',          u:'Land',      p:'$1,550,000' },
+      { ll:[34.196,-118.591], t:'comm', addr:'21314 Sherman Way',       city:'Canoga Park',     u:'Retail',    p:'$2,600,000' },
+      { ll:[34.022,-118.401], t:'land', addr:'1209 6th Ave',            city:'Venice',          u:'Land',      p:'$910,000' },
+      { ll:[34.197,-119.185], t:'apt',  addr:'3305 S A St',             city:'Oxnard',          u:'4 units',   p:'$1,250,000' },
+      { ll:[34.148,-118.144], t:'apt',  addr:'260 Linda Rosa Ave',      city:'Pasadena',        u:'7 units',   p:'$2,350,000' },
+      { ll:[34.059,-118.449], t:'apt',  addr:'10609 Eastborne Ave',     city:'Westwood',        u:'16 units',  p:'$2,900,000' },
+      { ll:[34.144,-117.999], t:'apt',  addr:'244 W Walnut Ave',        city:'Monrovia',        u:'4 units',   p:'$1,441,440' },
+      { ll:[34.035,-118.448], t:'apt',  addr:'1261 Stoner Ave',         city:'West LA',         u:'8 units',   p:'$8,990,000' },
+      { ll:[33.959,-118.271], t:'apt',  addr:'343 W 89th St',           city:'South Los Angeles',u:'10 units', p:'$2,475,000' },
+      { ll:[33.983,-118.272], t:'apt',  addr:'324 W 51st St',           city:'South Los Angeles',u:'4 units',  p:'$1,095,000' },
+      { ll:[37.379,-122.127], t:'land', addr:'27983 Central Dr',        city:'Los Altos Hills',  u:'Land',     p:'$3,995,000' },
+      { ll:[34.019,-118.481], t:'apt',  addr:'1753 9th St',             city:'Santa Monica',    u:'7 units',   p:'$5,100,000' },
+      { ll:[34.001,-118.468], t:'apt',  addr:'22 Park Ave',             city:'Venice',          u:'6 units',   p:'$5,000,000' },
+      { ll:[34.018,-118.490], t:'apt',  addr:'2224 Oak St',             city:'Santa Monica',    u:'6 units',   p:'$2,700,000' },
+      { ll:[34.197,-119.195], t:'apt',  addr:'1200 N H St',             city:'Oxnard',          u:'18 units',  p:'$4,350,000' },
+      { ll:[33.942,-118.393], t:'apt',  addr:'11700 Normandie Ave',     city:'South Los Angeles',u:'6 units',  p:'$1,486,500' },
+      { ll:[34.196,-119.190], t:'apt',  addr:'332 Cahuenga Dr',         city:'Oxnard',          u:'2 units',   p:'$785,000' },
+      { ll:[34.092,-118.292], t:'apt',  addr:'5330 Loma Linda Ave',     city:'East Hollywood',  u:'8 units',   p:'$4,400,000' },
+      { ll:[34.065,-118.295], t:'apt',  addr:'245 N Gramercy Pl',       city:'Koreatown',       u:'7 units',   p:'$1,480,000' },
+      { ll:[34.112,-118.189], t:'apt',  addr:'233 N Ave 55',            city:'Highland Park',   u:'2 units',   p:'$1,000,000' },
+      { ll:[34.114,-118.188], t:'comm', addr:'6126 N Figueroa St',      city:'Highland Park',   u:'Commercial',p:'$1,500,000' },
+      { ll:[34.153,-118.434], t:'apt',  addr:'4528 Vista Del Monte Ave',city:'Sherman Oaks',    u:'8 units',   p:'$1,995,000' },
+      { ll:[34.017,-118.480], t:'apt',  addr:'1434 10th St',            city:'Santa Monica',    u:'10 units',  p:'$5,900,000' },
+      { ll:[34.081,-118.253], t:'apt',  addr:'3415 Bellevue Ave',       city:'Echo Park',       u:'9 units',   p:'$1,380,000' },
+      { ll:[34.036,-118.436], t:'apt',  addr:'400 Landfair Ave',        city:'Westwood',        u:'6 units',   p:'$3,450,000' },
+      { ll:[34.038,-118.459], t:'land', addr:'11411 Ayrshire Rd',       city:'Brentwood',       u:'Land',      p:'$3,200,000' },
+      { ll:[34.005,-118.435], t:'land', addr:'3515 Ocean View Ave',     city:'Mar Vista',       u:'Land',      p:'$2,900,000' },
+      { ll:[34.022,-118.484], t:'land', addr:'2850 Delaware Ave',       city:'Santa Monica',    u:'Land',      p:'$1,800,000' },
+      { ll:[34.170,-118.838], t:'apt',  addr:'2661 Los Robles Rd',      city:'Thousand Oaks',   u:'3 units',   p:'$1,116,000' },
+      { ll:[34.036,-118.449], t:'apt',  addr:'1760 S Bentley Ave',      city:'West LA',         u:'5 units',   p:'$3,040,000' },
+      { ll:[34.436,-119.827], t:'apt',  addr:'6839 Sabado Tarde Rd',    city:'Goleta',          u:'7 units',   p:'$4,447,047' },
+      { ll:[34.420,-119.698], t:'apt',  addr:'318 S Voluntario St',     city:'Santa Barbara',   u:'8 units',   p:'$2,610,000' },
+      { ll:[34.047,-118.345], t:'apt',  addr:'1626 S La Brea Ave',      city:'Mid-City',        u:'4 units',   p:'$2,700,000' },
+      { ll:[34.013,-118.493], t:'apt',  addr:'707 Strand St',           city:'Santa Monica',    u:'5 units',   p:'$2,145,000' },
+      { ll:[34.116,-118.130], t:'apt',  addr:'181 Monterey Rd',         city:'South Pasadena',  u:'17 units',  p:'$2,600,000' },
+      { ll:[34.093,-118.331], t:'land', addr:'6914 De Longpre Ave',     city:'Hollywood',       u:'Land',      p:'$950,000' },
+      { ll:[34.098,-118.332], t:'apt',  addr:'1350 N Orange Dr',        city:'Hollywood',       u:'4 units',   p:'$2,650,000' },
+      { ll:[34.170,-118.377], t:'apt',  addr:'12001 Magnolia Blvd',     city:'Valley Village',  u:'3 units',   p:'$1,150,000' },
+      { ll:[34.033,-118.217], t:'apt',  addr:'2469 E 7th St',           city:'Boyle Heights',   u:'4 units',   p:'$2,050,000' },
+      { ll:[34.057,-118.443], t:'apt',  addr:'461 Midvale Ave',         city:'Westwood',        u:'6 units',   p:'$3,600,000' },
+      { ll:[34.121,-118.333], t:'apt',  addr:'2649 N Beachwood Dr',     city:'Hollywood Hills', u:'6 units',   p:'$1,935,000' },
+      { ll:[34.152,-118.128], t:'apt',  addr:'934 N Lake Ave',          city:'Pasadena',        u:'6 units',   p:'$1,433,000' },
+      { ll:[33.987,-118.274], t:'comm', addr:'806 W 47th St',           city:'South Los Angeles',u:'Industrial',p:'$3,225,000' },
       // ── 2022 ──
-      { ll:[34.157,-118.394],  t:'apt',  addr:'12602 Moorpark St',        city:'Studio City',     u:'8 units',   p:'$5,425,000' },
-      { ll:[34.248,-118.279],  t:'apt',  addr:'10150 Hillhaven Ave',      city:'Tujunga',         u:'35 units',  p:'$17,750,000' },
-      { ll:[34.228,-118.444],  t:'apt',  addr:'8421 Cedros Ave',          city:'Panorama City',   u:'75 units',  p:'$17,300,000' },
-      { ll:[34.250,-118.269],  t:'apt',  addr:'10240 Commerce Ave',       city:'Tujunga',         u:'36 units',  p:'$14,800,000' },
-      { ll:[34.188,-118.381],  t:'apt',  addr:'10617 Oxnard St',          city:'North Hollywood', u:'12 units',  p:'$4,130,000' },
-      { ll:[34.183,-118.420],  t:'apt',  addr:'5821 Hazeltine Ave',       city:'Van Nuys',        u:'4 units',   p:'$1,160,000' },
-      { ll:[34.184,-118.429],  t:'apt',  addr:'6727 Orion Ave',           city:'Van Nuys',        u:'5 units',   p:'$2,077,000' },
-      { ll:[34.200,-118.531],  t:'apt',  addr:'7543 Canby Ave',           city:'Reseda',          u:'8 units',   p:'$1,650,000' },
-      { ll:[34.176,-118.309],  t:'apt',  addr:'157 W Ash Ave',            city:'Burbank',         u:'5 units',   p:'$2,210,000' },
-      { ll:[34.148,-118.419],  t:'apt',  addr:'4838 Hazeltine Ave',       city:'Sherman Oaks',    u:'16 units',  p:'$6,100,000' },
-      { ll:[34.172,-118.378],  t:'apt',  addr:'5541 Fulcher Ave',         city:'North Hollywood', u:'15 units',  p:'$5,675,000' },
-      { ll:[34.183,-118.388],  t:'apt',  addr:'6810 Simpson Ave',         city:'North Hollywood', u:'4 units',   p:'$2,750,000' },
-      { ll:[34.157,-118.450],  t:'apt',  addr:'14514 Benefit St',         city:'Sherman Oaks',    u:'5 units',   p:'$1,610,000' },
-      { ll:[34.307,-118.461],  t:'apt',  addr:'13922 Sayre St',           city:'Sylmar',          u:'31 units',  p:'$7,550,000' },
-      { ll:[34.198,-118.532],  t:'apt',  addr:'7108 Amigo Ave',           city:'Reseda',          u:'34 units',  p:'$13,900,000' },
-      { ll:[34.193,-118.373],  t:'apt',  addr:'11408 Sarah St',           city:'North Hollywood', u:'10 units',  p:'$5,726,000' },
-      { ll:[34.173,-118.374],  t:'land', addr:'5554 Klump Ave',           city:'North Hollywood', u:'Land',      p:'$1,800,000' },
-      { ll:[34.173,-118.375],  t:'land', addr:'5560 Klump Ave',           city:'North Hollywood', u:'Land',      p:'$3,600,000' },
-      { ll:[34.230,-118.541],  t:'comm', addr:'19401 Business Ctr Dr',    city:'Northridge',      u:'Other',     p:'$18,700,000' },
+      { ll:[34.157,-118.394], t:'apt',  addr:'12602 Moorpark St',       city:'Studio City',     u:'8 units',   p:'$5,425,000' },
+      { ll:[34.248,-118.279], t:'apt',  addr:'10150 Hillhaven Ave',     city:'Tujunga',         u:'35 units',  p:'$17,750,000' },
+      { ll:[34.228,-118.444], t:'apt',  addr:'8421 Cedros Ave',         city:'Panorama City',   u:'75 units',  p:'$17,300,000' },
+      { ll:[34.250,-118.269], t:'apt',  addr:'10240 Commerce Ave',      city:'Tujunga',         u:'36 units',  p:'$14,800,000' },
+      { ll:[34.188,-118.381], t:'apt',  addr:'10617 Oxnard St',         city:'North Hollywood', u:'12 units',  p:'$4,130,000' },
+      { ll:[34.183,-118.420], t:'apt',  addr:'5821 Hazeltine Ave',      city:'Van Nuys',        u:'4 units',   p:'$1,160,000' },
+      { ll:[34.184,-118.429], t:'apt',  addr:'6727 Orion Ave',          city:'Van Nuys',        u:'5 units',   p:'$2,077,000' },
+      { ll:[34.200,-118.531], t:'apt',  addr:'7543 Canby Ave',          city:'Reseda',          u:'8 units',   p:'$1,650,000' },
+      { ll:[34.176,-118.309], t:'apt',  addr:'157 W Ash Ave',           city:'Burbank',         u:'5 units',   p:'$2,210,000' },
+      { ll:[34.148,-118.419], t:'apt',  addr:'4838 Hazeltine Ave',      city:'Sherman Oaks',    u:'16 units',  p:'$6,100,000' },
+      { ll:[34.172,-118.378], t:'apt',  addr:'5541 Fulcher Ave',        city:'North Hollywood', u:'15 units',  p:'$5,675,000' },
+      { ll:[34.183,-118.388], t:'apt',  addr:'6810 Simpson Ave',        city:'North Hollywood', u:'4 units',   p:'$2,750,000' },
+      { ll:[34.157,-118.450], t:'apt',  addr:'14514 Benefit St',        city:'Sherman Oaks',    u:'5 units',   p:'$1,610,000' },
+      { ll:[34.307,-118.461], t:'apt',  addr:'13922 Sayre St',          city:'Sylmar',          u:'31 units',  p:'$7,550,000' },
+      { ll:[34.198,-118.532], t:'apt',  addr:'7108 Amigo Ave',          city:'Reseda',          u:'34 units',  p:'$13,900,000' },
+      { ll:[34.193,-118.373], t:'apt',  addr:'11408 Sarah St',          city:'North Hollywood', u:'10 units',  p:'$5,726,000' },
+      { ll:[34.173,-118.374], t:'land', addr:'5554 Klump Ave',          city:'North Hollywood', u:'Land',      p:'$1,800,000' },
+      { ll:[34.173,-118.375], t:'land', addr:'5560 Klump Ave',          city:'North Hollywood', u:'Land',      p:'$3,600,000' },
+      { ll:[34.230,-118.541], t:'comm', addr:'19401 Business Ctr Dr',   city:'Northridge',      u:'Industrial',p:'$18,700,000' },
+      { ll:[34.049,-118.349], t:'land', addr:'1818 Clyde Ave',          city:'Mid-City',        u:'Land',      p:'$1,350,000' },
+      { ll:[34.095,-118.358], t:'apt',  addr:'346 N Gardner St',        city:'Fairfax',         u:'4 units',   p:'$2,750,000' },
+      { ll:[34.015,-118.492], t:'apt',  addr:'1528 10th St',            city:'Santa Monica',    u:'8 units',   p:'$3,350,000' },
+      { ll:[34.044,-118.261], t:'land', addr:'1322 W Maryland St',      city:'Downtown LA',     u:'Land',      p:'$1,750,000' },
+      { ll:[34.036,-118.463], t:'land', addr:'1531 Sawtelle Blvd',      city:'West LA',         u:'Land',      p:'$2,950,000' },
+      { ll:[34.168,-118.281], t:'comm', addr:'16810 Lakeshore Dr (2022)',city:'Northridge',     u:'Other',     p:'$18,700,000' },
+      { ll:[34.046,-118.356], t:'apt',  addr:'854 S Sycamore Ave',      city:'Miracle Mile',    u:'4 units',   p:'$2,720,000' },
+      { ll:[34.059,-118.453], t:'apt',  addr:'10605 Eastborne Ave',     city:'Westwood',        u:'Land',      p:'$2,400,000' },
+      { ll:[34.017,-118.480], t:'apt',  addr:'1540 7th St',             city:'Santa Monica',    u:'8 units',   p:'$6,050,000' },
+      { ll:[34.037,-118.449], t:'apt',  addr:'1463 Wellesley Ave',      city:'West LA',         u:'6 units',   p:'$3,210,000' },
+      { ll:[33.960,-118.238], t:'apt',  addr:'542 W 76th St',           city:'South Los Angeles',u:'6 units',  p:'$1,325,000' },
+      { ll:[33.958,-118.246], t:'apt',  addr:'841 W 74th St',           city:'South Los Angeles',u:'4 units',  p:'$600,000' },
+      { ll:[34.031,-118.219], t:'apt',  addr:'1001 Simmons Ave',        city:'East Los Angeles', u:'7 units',  p:'$1,750,000' },
+      { ll:[34.022,-118.399], t:'apt',  addr:'2339 Abbot Kinney Blvd',  city:'Venice',          u:'3 units',   p:'$1,817,800' },
+      { ll:[34.054,-118.394], t:'land', addr:'1541 S Hayworth Ave',     city:'Beverlywood',     u:'Land',      p:'$2,150,000' },
+      { ll:[34.010,-118.482], t:'apt',  addr:'10154 Hillhaven Ave',     city:'Tujunga',         u:'22 units',  p:'$1,275,000' },
       // ── 2023 ──
-      { ll:[34.176,-118.309],  t:'apt',  addr:'157 W Ash Ave',            city:'Burbank',         u:'5 units',   p:'$2,425,000' },
-      { ll:[34.161,-118.259],  t:'apt',  addr:'1027 Grover Ave',          city:'Glendale',        u:'8 units',   p:'$3,065,000' },
-      { ll:[34.248,-118.278],  t:'apt',  addr:'10345 Pinyon Ave',         city:'Tujunga',         u:'7 units',   p:'$1,325,000' },
-      { ll:[34.229,-118.447],  t:'apt',  addr:'8827 Van Nuys Blvd',       city:'Panorama City',   u:'9 units',   p:'$3,360,000' },
-      { ll:[34.177,-118.380],  t:'apt',  addr:'10650 Camarillo St',       city:'North Hollywood', u:'2 units',   p:'$1,250,000' },
-      { ll:[34.178,-118.305],  t:'apt',  addr:'336 E Providencia Ave',    city:'Burbank',         u:'24 units',  p:'$7,050,000' },
-      { ll:[34.178,-118.305],  t:'apt',  addr:'328 E Providencia Ave',    city:'Burbank',         u:'11 units',  p:'$5,175,000' },
-      { ll:[34.164,-118.507],  t:'apt',  addr:'17800 Magnolia Blvd',      city:'Encino',          u:'21 units',  p:'$6,100,000' },
-      { ll:[34.192,-118.385],  t:'land', addr:'11952 Vanowen St',         city:'North Hollywood', u:'Land',      p:'$2,190,000' },
-      { ll:[34.188,-118.461],  t:'land', addr:'16647 Victory Blvd',       city:'Van Nuys',        u:'Land',      p:'$1,075,000' },
-      { ll:[34.235,-118.564],  t:'land', addr:'17829 Halsted St',         city:'Northridge',      u:'Land',      p:'$3,875,000' },
-      { ll:[34.188,-118.296],  t:'apt',  addr:'4318 W Victory Blvd',      city:'Burbank',         u:'1 unit',    p:'$2,000,000' },
+      { ll:[34.176,-118.309], t:'apt',  addr:'157 W Ash Ave',           city:'Burbank',         u:'5 units',   p:'$2,425,000' },
+      { ll:[34.161,-118.259], t:'apt',  addr:'1027 Grover Ave',         city:'Glendale',        u:'8 units',   p:'$3,065,000' },
+      { ll:[34.248,-118.278], t:'apt',  addr:'10345 Pinyon Ave',        city:'Tujunga',         u:'7 units',   p:'$1,325,000' },
+      { ll:[34.229,-118.447], t:'apt',  addr:'8827 Van Nuys Blvd',      city:'Panorama City',   u:'9 units',   p:'$3,360,000' },
+      { ll:[34.177,-118.380], t:'apt',  addr:'10650 Camarillo St',      city:'North Hollywood', u:'2 units',   p:'$1,250,000' },
+      { ll:[34.178,-118.305], t:'apt',  addr:'336 E Providencia Ave',   city:'Burbank',         u:'24 units',  p:'$7,050,000' },
+      { ll:[34.178,-118.305], t:'apt',  addr:'328 E Providencia Ave',   city:'Burbank',         u:'11 units',  p:'$5,175,000' },
+      { ll:[34.164,-118.507], t:'apt',  addr:'17800 Magnolia Blvd',     city:'Encino',          u:'21 units',  p:'$6,100,000' },
+      { ll:[34.192,-118.385], t:'land', addr:'11952 Vanowen St',        city:'North Hollywood', u:'Land',      p:'$2,190,000' },
+      { ll:[34.188,-118.461], t:'land', addr:'16647 Victory Blvd',      city:'Van Nuys',        u:'Land',      p:'$1,075,000' },
+      { ll:[34.235,-118.564], t:'land', addr:'17829 Halsted St',        city:'Northridge',      u:'Land',      p:'$3,875,000' },
+      { ll:[34.188,-118.296], t:'comm', addr:'4318 W Victory Blvd',     city:'Burbank',         u:'Office',    p:'$2,000,000' },
+      { ll:[34.007,-118.151], t:'apt',  addr:'4211 McLaughlin Ave',     city:'Mar Vista',       u:'5 units',   p:'$1,760,000' },
+      { ll:[34.400,-118.918], t:'apt',  addr:'255 Sespe Ave',           city:'Fillmore',        u:'3 units',   p:'$845,000' },
+      { ll:[34.036,-118.457], t:'land', addr:'12202 Exposition Blvd',   city:'West LA',         u:'Land',      p:'$2,256,000' },
+      { ll:[33.960,-118.261], t:'land', addr:'10727 S Central Ave',     city:'South Los Angeles',u:'Land',     p:'$995,000' },
+      { ll:[34.142,-118.148], t:'apt',  addr:'400 S Mentor Ave',        city:'Pasadena',        u:'21 units',  p:'$7,500,000' },
+      { ll:[33.770,-118.193], t:'land', addr:'300 Alamitos Ave',        city:'Long Beach',      u:'Land',      p:'$4,900,000' },
+      { ll:[34.058,-118.441], t:'apt',  addr:'504 Glenrock Ave',        city:'Westwood',        u:'22 units',  p:'$12,750,000' },
+      { ll:[34.105,-118.282], t:'apt',  addr:'2900 Griffith Park Blvd', city:'Los Feliz',       u:'3 units',   p:'$1,400,000' },
+      { ll:[33.884,-118.411], t:'apt',  addr:'1826 12th St',            city:'Manhattan Beach', u:'10 units',  p:'$4,500,000' },
       // ── 2024 ──
-      { ll:[34.166,-118.378],  t:'apt',  addr:'4725 Radford Ave',         city:'Valley Village',  u:'21 units',  p:'$10,237,500' },
-      { ll:[34.175,-118.375],  t:'apt',  addr:'11616 Burbank Blvd',       city:'North Hollywood', u:'21 units',  p:'$9,627,750' },
-      { ll:[34.186,-118.399],  t:'apt',  addr:'6228 Fulton Ave',          city:'Van Nuys',        u:'30 units',  p:'$8,740,000' },
-      { ll:[34.170,-118.379],  t:'apt',  addr:'5630 Fair Ave',            city:'North Hollywood', u:'15 units',  p:'$7,625,000' },
-      { ll:[34.175,-118.371],  t:'apt',  addr:'11143 Aqua Vista St',      city:'North Hollywood', u:'10 units',  p:'$2,300,000' },
-      { ll:[34.159,-118.401],  t:'apt',  addr:'12021 Hoffman St',         city:'Studio City',     u:'5 units',   p:'$1,495,000' },
-      { ll:[34.171,-118.385],  t:'apt',  addr:'5340 Ben Ave',             city:'Valley Village',  u:'4 units',   p:'$1,200,000' },
-      { ll:[34.184,-118.423],  t:'apt',  addr:'6311 Hazeltine Ave',       city:'Van Nuys',        u:'4 units',   p:'$915,000' },
-      { ll:[34.157,-118.362],  t:'apt',  addr:'10611 Landale St',         city:'Toluca Lake',     u:'5 units',   p:'$1,400,000' },
-      { ll:[34.177,-118.399],  t:'apt',  addr:'11344 Oxnard St',          city:'North Hollywood', u:'3 units',   p:'$890,000' },
-      { ll:[34.207,-118.434],  t:'apt',  addr:'7303 Woodley Ave',         city:'Van Nuys',        u:'5 units',   p:'$950,000' },
-      { ll:[34.198,-118.595],  t:'apt',  addr:'6902 Milwood Ave',         city:'Canoga Park',     u:'8 units',   p:'$1,510,000' },
-      { ll:[34.191,-118.397],  t:'apt',  addr:'12805 Vanowen St',         city:'North Hollywood', u:'6 units',   p:'$1,140,000' },
-      { ll:[34.269,-118.401],  t:'land', addr:'12342 Osborne St',         city:'Pacoima',         u:'Land',      p:'$2,400,000' },
-      { ll:[34.269,-118.412],  t:'land', addr:'10550 Haddon Ave',         city:'Pacoima',         u:'Land',      p:'$380,000' },
-      { ll:[34.180,-118.385],  t:'land', addr:'6746 Ben Ave',             city:'North Hollywood', u:'Land',      p:'$775,000' },
-      { ll:[34.180,-118.386],  t:'land', addr:'6740 Ben Ave',             city:'North Hollywood', u:'Land',      p:'$775,000' },
+      { ll:[34.166,-118.378], t:'apt',  addr:'4725 Radford Ave',        city:'Valley Village',  u:'21 units',  p:'$10,237,500' },
+      { ll:[34.175,-118.375], t:'apt',  addr:'11616 Burbank Blvd',      city:'North Hollywood', u:'21 units',  p:'$9,627,750' },
+      { ll:[34.186,-118.399], t:'apt',  addr:'6228 Fulton Ave',         city:'Van Nuys',        u:'30 units',  p:'$8,740,000' },
+      { ll:[34.170,-118.379], t:'apt',  addr:'5630 Fair Ave',           city:'North Hollywood', u:'15 units',  p:'$7,625,000' },
+      { ll:[34.175,-118.371], t:'apt',  addr:'11143 Aqua Vista St',     city:'North Hollywood', u:'10 units',  p:'$2,300,000' },
+      { ll:[34.159,-118.401], t:'apt',  addr:'12021 Hoffman St',        city:'Studio City',     u:'5 units',   p:'$1,495,000' },
+      { ll:[34.171,-118.385], t:'apt',  addr:'5340 Ben Ave',            city:'Valley Village',  u:'4 units',   p:'$1,200,000' },
+      { ll:[34.184,-118.423], t:'apt',  addr:'6311 Hazeltine Ave',      city:'Van Nuys',        u:'4 units',   p:'$915,000' },
+      { ll:[34.157,-118.362], t:'apt',  addr:'10611 Landale St',        city:'Toluca Lake',     u:'5 units',   p:'$1,400,000' },
+      { ll:[34.177,-118.399], t:'apt',  addr:'11344 Oxnard St',         city:'North Hollywood', u:'3 units',   p:'$890,000' },
+      { ll:[34.207,-118.434], t:'apt',  addr:'7303 Woodley Ave',        city:'Van Nuys',        u:'5 units',   p:'$950,000' },
+      { ll:[34.198,-118.595], t:'apt',  addr:'6902 Milwood Ave',        city:'Canoga Park',     u:'8 units',   p:'$1,510,000' },
+      { ll:[34.191,-118.397], t:'apt',  addr:'12805 Vanowen St',        city:'North Hollywood', u:'6 units',   p:'$1,140,000' },
+      { ll:[34.269,-118.401], t:'land', addr:'12342 Osborne St',        city:'Pacoima',         u:'Land',      p:'$2,400,000' },
+      { ll:[34.269,-118.412], t:'land', addr:'10550 Haddon Ave',        city:'Pacoima',         u:'Land',      p:'$380,000' },
+      { ll:[34.180,-118.385], t:'land', addr:'6746 Ben Ave',            city:'North Hollywood', u:'Land',      p:'$775,000' },
+      { ll:[34.180,-118.386], t:'land', addr:'6740 Ben Ave',            city:'North Hollywood', u:'Land',      p:'$775,000' },
+      { ll:[34.096,-118.357], t:'apt',  addr:'401 S Le Doux Rd',        city:'Fairfax',         u:'19 units',  p:'$2,626,000' },
+      { ll:[34.274,-119.229], t:'apt',  addr:'40 N Brent St',           city:'Ventura',         u:'8 units',   p:'$2,487,000' },
+      { ll:[34.021,-118.398], t:'land', addr:'657 Flower Ave',          city:'Venice',          u:'Land',      p:'$1,175,000' },
+      { ll:[34.106,-117.593], t:'land', addr:'6527 Etiwanda Ave',       city:'Rancho Cucamonga',u:'Land',      p:'$4,062,750' },
+      { ll:[33.668,-117.328], t:'comm', addr:'16810 Lakeshore Dr',      city:'Lake Elsinore',   u:'NNN',       p:'$3,225,000' },
+      { ll:[34.052,-118.392], t:'land', addr:'1233 S Bedford St',       city:'Beverlywood',     u:'Land',      p:'$2,100,000' },
       // ── 2025 ──
-      { ll:[34.170,-118.376],  t:'apt',  addr:'11700 Magnolia Blvd',      city:'Valley Village',  u:'19 units',  p:'$8,525,000' },
-      { ll:[34.200,-118.468],  t:'apt',  addr:'14015 Oxnard St',          city:'Van Nuys',        u:'32 units',  p:'$5,136,000' },
-      { ll:[34.158,-118.396],  t:'apt',  addr:'4637 Laurel Canyon Blvd', city:'Valley Village',  u:'5 units',   p:'$5,150,000' },
-      { ll:[34.210,-118.442],  t:'apt',  addr:'6716 Sylmar Ave',          city:'Van Nuys',        u:'12 units',  p:'$3,500,000' },
-      { ll:[34.199,-118.446],  t:'apt',  addr:'5917 Buffalo Ave',         city:'Van Nuys',        u:'5 units',   p:'$1,645,000' },
-      { ll:[34.185,-118.382],  t:'apt',  addr:'12800 Oxnard St',          city:'North Hollywood', u:'3 units',   p:'$1,125,000' },
-      { ll:[34.159,-118.430],  t:'apt',  addr:'3920 Knobhill Dr',         city:'Sherman Oaks',    u:'Apts',      p:'$3,925,000' },
-      { ll:[34.209,-118.469],  t:'land', addr:'14658 Gilmore St',         city:'Van Nuys',        u:'Land',      p:'$1,690,000' },
+      { ll:[34.170,-118.376], t:'apt',  addr:'11700 Magnolia Blvd',     city:'Valley Village',  u:'19 units',  p:'$8,525,000' },
+      { ll:[34.200,-118.468], t:'apt',  addr:'14015 Oxnard St',         city:'Van Nuys',        u:'32 units',  p:'$5,136,000' },
+      { ll:[34.158,-118.396], t:'apt',  addr:'4637 Laurel Canyon Blvd', city:'Valley Village',  u:'5 units',   p:'$5,150,000' },
+      { ll:[34.210,-118.442], t:'apt',  addr:'6716 Sylmar Ave',         city:'Van Nuys',        u:'12 units',  p:'$3,500,000' },
+      { ll:[34.199,-118.446], t:'apt',  addr:'5917 Buffalo Ave',        city:'Van Nuys',        u:'5 units',   p:'$1,645,000' },
+      { ll:[34.185,-118.382], t:'apt',  addr:'12800 Oxnard St',         city:'North Hollywood', u:'3 units',   p:'$1,125,000' },
+      { ll:[34.159,-118.430], t:'land', addr:'3920 Knobhill Dr',        city:'Sherman Oaks',    u:'Land',      p:'$3,925,000' },
+      { ll:[34.209,-118.469], t:'land', addr:'14658 Gilmore St',        city:'Van Nuys',        u:'Land',      p:'$1,690,000' },
+      { ll:[34.044,-118.259], t:'apt',  addr:'819 Beacon Ave',          city:'Downtown LA',     u:'15 units',  p:'$1,925,000' },
+      { ll:[37.453,-122.182], t:'land', addr:'201 El Camino Real',      city:'Menlo Park',      u:'Land',      p:'$5,600,000' },
+      { ll:[34.448,-119.243], t:'apt',  addr:'514 E Oak St',            city:'Ojai',            u:'32 units',  p:'$8,250,000' },
+      { ll:[33.963,-118.439], t:'apt',  addr:'7749 St Bernard St',      city:'Playa Del Rey',   u:'14 units',  p:'$4,380,000' },
+      { ll:[34.070,-118.303], t:'land', addr:'4705 Elmwood Ave',        city:'Koreatown',       u:'Land',      p:'$3,050,000' },
+      { ll:[34.391,-118.543], t:'apt',  addr:'24966 Walnut St',         city:'Santa Clarita',   u:'9 units',   p:'$1,825,000' },
+      { ll:[34.040,-118.437], t:'land', addr:'1617 Barry Ave',          city:'West LA',         u:'Land',      p:'$2,690,000' },
+      { ll:[34.158,-118.396], t:'apt',  addr:'4637 Laurel Canyon Blvd', city:'Valley Village',  u:'5 units',   p:'$5,150,000' },
+      { ll:[34.058,-118.358], t:'apt',  addr:'1420 Cochran Ave',        city:'Mid-City',        u:'13 units',  p:'$1,150,000' },
+      { ll:[34.197,-119.177], t:'apt',  addr:'1200 N H St',             city:'Oxnard',          u:'18 units',  p:'$4,647,332' },
+      { ll:[34.010,-118.482], t:'apt',  addr:'3205 Ocean Park Blvd',    city:'Santa Monica',    u:'6 units',   p:'$7,000,000' },
+      { ll:[34.085,-118.349], t:'apt',  addr:'1052 N Martel Ave',       city:'West Hollywood',  u:'5 units',   p:'$1,640,000' },
+      { ll:[34.085,-118.347], t:'apt',  addr:'1046 N Genesee Ave',      city:'West Hollywood',  u:'5 units',   p:'$1,860,000' },
       // ── 2026 ──
-      { ll:[34.210,-118.458],  t:'apt',  addr:'14932 Kittridge St',       city:'Van Nuys',        u:'4 units',   p:'$1,734,000' },
-      // Broader LA (non-SFV closed deals on file)
-      { ll:[34.215,-118.228],  t:'apt',  addr:'4123 Ocean View Blvd',     city:'Montrose',        u:'6 units',   p:'$1,685,000' },
-      { ll:[34.076,-118.309],  t:'land', addr:'4718 Oakwood Ave',         city:'Koreatown',       u:'Land',      p:'$4,700,000' },
-      { ll:[34.076,-118.309],  t:'land', addr:'4705 Elmwood Ave',         city:'Koreatown',       u:'Land',      p:'$3,050,000' },
-      { ll:[34.090,-118.298],  t:'apt',  addr:'1536 Serrano Ave',         city:'East Hollywood',  u:'42 units',  p:'$7,600,000' },
-      { ll:[34.117,-118.343],  t:'apt',  addr:'3662 Fredonia Dr',         city:'Hollywood Hills', u:'4 units',   p:'$1,475,000' },
-      { ll:[34.058,-118.358],  t:'apt',  addr:'1420 Cochran Ave',         city:'Mid-City',        u:'13 units',  p:'$1,150,000' },
-      { ll:[34.044,-118.259],  t:'apt',  addr:'819 Beacon Ave',           city:'Downtown LA',     u:'15 units',  p:'$1,925,000' },
-      { ll:[34.010,-118.482],  t:'apt',  addr:'3205 Ocean Park Blvd',     city:'Santa Monica',    u:'6 units',   p:'$7,000,000' },
-      { ll:[34.040,-118.437],  t:'land', addr:'1617 Barry Ave',           city:'West LA',         u:'Land',      p:'$2,690,000' },
-      { ll:[33.963,-118.439],  t:'apt',  addr:'7749 St Bernard St',       city:'Playa Del Rey',   u:'14 units',  p:'$4,380,000' },
-      { ll:[34.052,-118.392],  t:'land', addr:'1233 S Bedford St',        city:'Beverlywood',     u:'Land',      p:'$2,100,000' },
-      { ll:[34.085,-118.349],  t:'apt',  addr:'1052 N Martel Ave',        city:'West Hollywood',  u:'5 units',   p:'$1,640,000' },
-      { ll:[34.085,-118.347],  t:'apt',  addr:'1046 N Genesee Ave',       city:'West Hollywood',  u:'5 units',   p:'$1,860,000' },
-      { ll:[34.391,-118.543],  t:'apt',  addr:'24966 Walnut St',          city:'Santa Clarita',   u:'9 units',   p:'$1,825,000' }
+      { ll:[34.200,-118.196], t:'apt',  addr:'4503 Castle Lane',        city:'La Cañada Flintridge',u:'3 units',p:'$1,280,000' },
+      { ll:[34.215,-118.228], t:'apt',  addr:'4123 Ocean View Blvd',    city:'Montrose',        u:'6 units',   p:'$1,685,000' },
+      { ll:[34.076,-118.309], t:'land', addr:'4718 Oakwood Ave',        city:'Koreatown',       u:'Land',      p:'$4,700,000' },
+      { ll:[34.090,-118.298], t:'apt',  addr:'1536 Serrano Ave',        city:'East Hollywood',  u:'42 units',  p:'$7,600,000' },
+      { ll:[34.117,-118.343], t:'apt',  addr:'3662 Fredonia Dr',        city:'Hollywood Hills', u:'4 units',   p:'$1,475,000' },
+      { ll:[34.210,-118.458], t:'apt',  addr:'14932 Kittridge St',      city:'Van Nuys',        u:'4 units',   p:'$1,734,000' },
+      // ── Earlier years (2012–2016) ──
+      { ll:[34.228,-118.444], t:'apt',  addr:'8821 Van Nuys Blvd',      city:'Panorama City',   u:'5 units',   p:'$492,500' },
+      { ll:[34.200,-118.468], t:'apt',  addr:'14151 Delano St',         city:'Van Nuys',        u:'8 units',   p:'$890,000' },
+      { ll:[34.200,-118.468], t:'apt',  addr:'14728 Sylvan St',         city:'Van Nuys',        u:'7 units',   p:'$1,400,000' },
+      { ll:[34.229,-118.555], t:'land', addr:'18528 Chase St',          city:'Northridge',      u:'Land',      p:'$1,200,000' },
+      { ll:[34.193,-118.468], t:'apt',  addr:'6706 Hayvenhurst Ave',    city:'Van Nuys',        u:'33 units',  p:'$3,800,000' },
+      { ll:[34.206,-118.455], t:'apt',  addr:'16004 Cantlay St',        city:'Van Nuys',        u:'12 units',  p:'$1,365,000' },
+      { ll:[34.055,-117.750], t:'apt',  addr:'3420 Falcon St',          city:'Pomona',          u:'48 units',  p:'$7,742,000' },
+      { ll:[34.234,-118.493], t:'land', addr:'15566 Rayen St',          city:'North Hills',     u:'Land',      p:'$480,000' },
+      { ll:[33.962,-118.260], t:'apt',  addr:'9617 S San Pedro St',     city:'South Los Angeles',u:'7 units',  p:'$970,000' },
+      { ll:[34.198,-118.598], t:'apt',  addr:'8200 Owensmouth Ave',     city:'Canoga Park',     u:'23 units',  p:'$2,475,000' },
+      { ll:[33.960,-118.253], t:'apt',  addr:'8823 S Figueroa St',      city:'South Los Angeles',u:'4 units',  p:'$750,000' },
+      { ll:[34.169,-118.593], t:'apt',  addr:'22423 Del Valle St',      city:'Woodland Hills',  u:'8 units',   p:'$1,745,000' },
+      { ll:[33.825,-116.545], t:'apt',  addr:'23111 Parkmead Dr',       city:'Palm Springs',    u:'11 units',  p:'$621,500' },
+      { ll:[34.234,-118.493], t:'land', addr:'8935 Orion Ave',          city:'North Hills',     u:'Land',      p:'$570,000' },
+      { ll:[34.148,-118.144], t:'apt',  addr:'238 S Avenue 21',         city:'Lincoln Heights', u:'10 units',  p:'$780,000' },
+      { ll:[34.282,-118.437], t:'apt',  addr:'14369 Chatsworth Dr',     city:'San Fernando',    u:'10 units',  p:'$925,000' },
+      { ll:[34.242,-118.536], t:'apt',  addr:'9842 Etiwanda Ave',       city:'Northridge',      u:'5 units',   p:'$770,000' },
+      { ll:[34.149,-118.428], t:'apt',  addr:'4325 Stern Ave',          city:'Sherman Oaks',    u:'5 units',   p:'$2,750,000' },
+      { ll:[34.229,-118.540], t:'apt',  addr:'18042 Schoenborn St',     city:'Northridge',      u:'6 units',   p:'$870,000' },
+      { ll:[34.186,-118.375], t:'apt',  addr:'11303 Huston Ave',        city:'North Hollywood', u:'5 units',   p:'$2,250,000' },
+      { ll:[34.242,-118.536], t:'apt',  addr:'8809 Etiwanda Ave',       city:'Northridge',      u:'13 units',  p:'$1,450,000' },
+      { ll:[34.200,-118.468], t:'apt',  addr:'14767 Delano St',         city:'Van Nuys',        u:'8 units',   p:'$1,185,000' },
+      { ll:[34.283,-118.497], t:'apt',  addr:'17720 Kingsbury St',      city:'Granada Hills',   u:'4 units',   p:'$755,000' },
+      { ll:[34.198,-118.597], t:'apt',  addr:'7337 Independence Ave',   city:'Canoga Park',     u:'30 units',  p:'$4,075,000' },
+      { ll:[34.237,-118.543], t:'apt',  addr:'19237 Bryant St',         city:'Northridge',      u:'16 units',  p:'$2,145,000' },
+      { ll:[34.169,-118.381], t:'apt',  addr:'5555 Carpenter Ave',      city:'Valley Village',  u:'5 units',   p:'$1,890,000' },
+      { ll:[34.149,-118.419], t:'apt',  addr:'4540 Hazeltine Ave',      city:'Sherman Oaks',    u:'23 units',  p:'$7,125,000' },
+      { ll:[34.198,-118.468], t:'apt',  addr:'14902 Gilmore St',        city:'Van Nuys',        u:'7 units',   p:'$1,112,500' },
+      { ll:[34.186,-118.375], t:'apt',  addr:'4916 Cahuenga Blvd',      city:'North Hollywood', u:'16 units',  p:'$3,775,000' },
+      { ll:[34.186,-118.375], t:'apt',  addr:'6901 Hinds Ave',          city:'North Hollywood', u:'4 units',   p:'$670,000' },
+      { ll:[34.186,-118.375], t:'apt',  addr:'11204 Peach Grove St',    city:'North Hollywood', u:'5 units',   p:'$1,075,000' },
+      { ll:[34.149,-118.417], t:'apt',  addr:'4410 Sepulveda Blvd',     city:'Sherman Oaks',    u:'31 units',  p:'$18,500,000' },
+      { ll:[34.183,-118.312], t:'apt',  addr:'703 E Providencia Ave',   city:'Burbank',         u:'10 units',  p:'$1,970,000' },
+      { ll:[34.190,-118.456], t:'apt',  addr:'6859 Woodman Ave',        city:'Van Nuys',        u:'7 units',   p:'$1,400,000' },
+      { ll:[34.178,-118.379], t:'apt',  addr:'10800 Hesby St',          city:'North Hollywood', u:'10 units',  p:'$2,400,000' },
+      { ll:[33.835,-117.914], t:'apt',  addr:'2268 W Colchester Dr',    city:'Anaheim',         u:'8 units',   p:'$1,465,000' },
+      { ll:[34.013,-118.493], t:'apt',  addr:'707 Strand St',           city:'Santa Monica',    u:'5 units',   p:'$1,812,500' },
+      { ll:[34.200,-118.533], t:'apt',  addr:'7254 Canby Ave',          city:'Reseda',          u:'10 units',  p:'$1,355,000' },
+      { ll:[34.248,-118.278], t:'apt',  addr:'10129 Commerce Ave',      city:'Tujunga',         u:'12 units',  p:'$2,450,000' },
+      { ll:[34.248,-118.279], t:'apt',  addr:'10219 Commerce Ave',      city:'Tujunga',         u:'12 units',  p:'$2,450,000' },
+      { ll:[34.148,-118.144], t:'apt',  addr:'940 N Summit Ave',        city:'Pasadena',        u:'3 units',   p:'$615,000' },
+      { ll:[34.242,-118.536], t:'apt',  addr:'8809 Etiwanda Ave',       city:'Northridge',      u:'13 units',  p:'$2,125,000' },
+      { ll:[34.199,-118.469], t:'apt',  addr:'14148 Calvert St',        city:'Van Nuys',        u:'7 units',   p:'$1,140,000' },
+      { ll:[34.183,-118.312], t:'apt',  addr:'422 S Lake St',           city:'Burbank',         u:'14 units',  p:'$7,250,000' },
+      { ll:[33.119,-117.086], t:'comm', addr:'607 W 9th Ave',           city:'Escondido',       u:'Retail',    p:'$1,650,000' },
+      { ll:[33.835,-117.914], t:'apt',  addr:'931 S Trident St',        city:'Anaheim',         u:'16 units',  p:'$3,050,000' },
+      { ll:[34.200,-118.468], t:'apt',  addr:'14837 Delano St (2016)',  city:'Van Nuys',        u:'8 units',   p:'$1,400,000' },
+      { ll:[34.198,-118.597], t:'apt',  addr:'7240 Jordan Ave',         city:'Canoga Park',     u:'17 units',  p:'$3,000,000' },
+      { ll:[34.261,-118.596], t:'apt',  addr:'9939 Topanga Canyon Blvd',city:'Chatsworth',      u:'12 units',  p:'$4,250,000' },
+      { ll:[34.698,-118.137], t:'apt',  addr:'44138 Beech Ave',         city:'Lancaster',       u:'10 units',  p:'$560,000' },
+      { ll:[34.200,-119.178], t:'apt',  addr:'905 N A St',              city:'Oxnard',          u:'6 units',   p:'$890,000' },
+      { ll:[34.186,-118.375], t:'apt',  addr:'6805 Bellaire Ave',       city:'North Hollywood', u:'6 units',   p:'$932,250' },
+      { ll:[34.186,-118.375], t:'apt',  addr:'10717 Bloomfield St',     city:'North Hollywood', u:'4 units',   p:'$1,100,000' },
+      { ll:[33.960,-118.253], t:'apt',  addr:'3207 W 73rd St',          city:'South Los Angeles',u:'8 units',  p:'$760,000' },
+      { ll:[34.200,-118.468], t:'apt',  addr:'14604 Gault St',          city:'Van Nuys',        u:'16 units',  p:'$3,725,000' },
+      { ll:[34.200,-118.533], t:'apt',  addr:'7260 Canby Ave',          city:'Reseda',          u:'6 units',   p:'$845,000' },
+      { ll:[34.312,-118.429], t:'apt',  addr:'12405 San Fernando Rd',   city:'Sylmar',          u:'22 units',  p:'$3,650,000' },
+      { ll:[34.197,-119.234], t:'apt',  addr:'531 W Channel Islands Blvd',city:'Oxnard',        u:'5 units',   p:'$925,000' },
+      { ll:[34.172,-118.378], t:'land', addr:'11950 Riverside Dr',      city:'Valley Village',  u:'Land',      p:'$875,000' },
+      { ll:[34.189,-118.130], t:'apt',  addr:'755 E Pine St',           city:'Altadena',        u:'17 units',  p:'$3,100,000' },
+      { ll:[34.146,-118.144], t:'apt',  addr:'55 Arlington Dr (2015)',  city:'Pasadena',        u:'8 units',   p:'$2,000,000' },
+      { ll:[33.951,-118.276], t:'land', addr:'255 S Mariposa Ave',      city:'South Los Angeles',u:'Land',     p:'$6,150,000' },
+      { ll:[34.229,-118.412], t:'apt',  addr:'8750 Woodman Ave',        city:'Arleta',          u:'24 units',  p:'$2,900,000' },
+      { ll:[34.242,-118.521], t:'apt',  addr:'8362 Amigo Ave',          city:'Northridge',      u:'14 units',  p:'$2,495,000' },
+      { ll:[34.200,-118.468], t:'apt',  addr:'14154 Sylvan St (2015)',  city:'Van Nuys',        u:'4 units',   p:'$880,000' },
+      { ll:[34.579,-118.116], t:'apt',  addr:'509 E Avenue Q1',         city:'Palmdale',        u:'6 units',   p:'$420,000' },
+      { ll:[34.200,-118.572], t:'apt',  addr:'6824 Winnetka Ave',       city:'Winnetka',        u:'14 units',  p:'$2,700,000' },
+      { ll:[34.200,-118.468], t:'apt',  addr:'6959 Woodman Ave',        city:'Van Nuys',        u:'16 units',  p:'$3,500,000' },
+      { ll:[34.234,-118.493], t:'land', addr:'15566 Rayen St (2015)',   city:'North Hills',     u:'Land',      p:'$1,250,000' },
+      { ll:[34.183,-118.323], t:'apt',  addr:'2501 N Glenoaks Blvd',    city:'Burbank',         u:'6 units',   p:'$1,530,000' },
+      { ll:[34.265,-118.413], t:'apt',  addr:'11710 Glenoaks Blvd',     city:'Pacoima',         u:'14 units',  p:'$1,670,000' },
+      { ll:[35.373,-119.017], t:'apt',  addr:'334 Beardsley Ave',       city:'Bakersfield',     u:'12 units',  p:'$600,000' },
+      { ll:[34.698,-118.150], t:'apt',  addr:'2349 W Avenue J-8',       city:'Lancaster',       u:'21 units',  p:'$2,000,000' },
+      { ll:[34.149,-118.419], t:'apt',  addr:'5105 Woodman Ave',        city:'Sherman Oaks',    u:'10 units',  p:'$2,862,500' },
+      { ll:[34.204,-118.575], t:'apt',  addr:'20326 Cohasset St',       city:'Winnetka',        u:'22 units',  p:'$3,230,000' },
+      { ll:[34.034,-118.443], t:'apt',  addr:'1215 Barry Ave',          city:'West LA',         u:'7 units',   p:'$3,000,000' },
+      { ll:[34.186,-118.375], t:'apt',  addr:'11312 Huston St',         city:'North Hollywood', u:'14 units',  p:'$6,250,100' },
+      { ll:[34.265,-118.413], t:'apt',  addr:'10461 Ilex Ave',          city:'Pacoima',         u:'4 units',   p:'$450,000' },
+      { ll:[33.896,-118.220], t:'land', addr:'14803 S Stanford Ave',    city:'Compton',         u:'Land',      p:'$1,200,000' },
+      { ll:[34.698,-118.137], t:'apt',  addr:'301 E Lancaster Blvd',    city:'Lancaster',       u:'10 units',  p:'$1,000,000' },
+      { ll:[34.183,-118.312], t:'apt',  addr:'703 E Providencia Ave',   city:'Burbank',         u:'10 units',  p:'$1,970,000' },
     ];
 
     const markers = [];
@@ -397,7 +516,6 @@
       markers.push(m);
     });
 
-    // Subject property
     const subjectIcon = L.divIcon({
       className: '',
       html: `<div style="background:#0a2540;border:3px solid #b8985a;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;"><div style="background:#b8985a;width:6px;height:6px;border-radius:50%"></div></div>`,
@@ -407,9 +525,8 @@
       .bindPopup(`<div class="pu-addr">&#9733; 5638 N Colfax Ave</div><div class="pu-meta">North Hollywood &nbsp;|&nbsp; 8 Studios</div><div class="pu-price">$1,500,000 — Subject Property</div>`);
     sub.addTo(map);
 
-    // Auto-fit all markers
     const grp = L.featureGroup([...markers, sub]);
-    map.fitBounds(grp.getBounds().pad(0.06));
+    map.fitBounds(grp.getBounds().pad(0.04));
   </script>
 
 </body>
